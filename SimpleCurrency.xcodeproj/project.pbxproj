@@ -11,6 +11,10 @@
 		5071FAD226591A3700F19955 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAD126591A3700F19955 /* ContentView.swift */; };
 		5071FAD426591A3B00F19955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5071FAD326591A3B00F19955 /* Assets.xcassets */; };
 		5071FAD726591A3B00F19955 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5071FAD626591A3B00F19955 /* Preview Assets.xcassets */; };
+		5071FAE426591F7B00F19955 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE326591F7B00F19955 /* Currency.swift */; };
+		5071FAE7265920BB00F19955 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE6265920BB00F19955 /* Flag.swift */; };
+		5071FAEA265922D000F19955 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE9265922CF00F19955 /* Country.swift */; };
+		5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAEC2659270E00F19955 /* CountryListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,10 @@
 		5071FAD326591A3B00F19955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5071FAD626591A3B00F19955 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5071FAD826591A3B00F19955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5071FAE326591F7B00F19955 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		5071FAE6265920BB00F19955 /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
+		5071FAE9265922CF00F19955 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		5071FAEC2659270E00F19955 /* CountryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +60,11 @@
 		5071FACE26591A3700F19955 /* SimpleCurrency */ = {
 			isa = PBXGroup;
 			children = (
-				5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */,
+				5071FADF26591A4D00F19955 /* Models */,
+				5071FAE026591A5500F19955 /* ViewModels */,
+				5071FAE126591A6700F19955 /* Views */,
 				5071FAD126591A3700F19955 /* ContentView.swift */,
+				5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */,
 				5071FAD326591A3B00F19955 /* Assets.xcassets */,
 				5071FAD826591A3B00F19955 /* Info.plist */,
 				5071FAD526591A3B00F19955 /* Preview Content */,
@@ -67,6 +78,31 @@
 				5071FAD626591A3B00F19955 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5071FADF26591A4D00F19955 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5071FAE326591F7B00F19955 /* Currency.swift */,
+				5071FAE6265920BB00F19955 /* Flag.swift */,
+				5071FAE9265922CF00F19955 /* Country.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5071FAE026591A5500F19955 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5071FAEC2659270E00F19955 /* CountryListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5071FAE126591A6700F19955 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +174,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5071FAE426591F7B00F19955 /* Currency.swift in Sources */,
 				5071FAD226591A3700F19955 /* ContentView.swift in Sources */,
 				5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */,
+				5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */,
+				5071FAEA265922D000F19955 /* Country.swift in Sources */,
+				5071FAE7265920BB00F19955 /* Flag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

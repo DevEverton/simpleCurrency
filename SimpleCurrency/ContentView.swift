@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var countryList = CountryListViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
+        Text("USD: \(countryList.rates["USD"] ?? 0.0)")
             .padding()
+            .onAppear {
+                countryList.getCurrencyList(base: "BRL")
+            }
     }
 }
 
