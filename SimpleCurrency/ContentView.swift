@@ -11,12 +11,20 @@ struct ContentView: View {
     @StateObject var countryList = CountryListViewModel()
     
     var body: some View {
-        Text("USD: \(countryList.rates["USD"] ?? 0.0)")
-            .padding()
-            .onAppear {
-                countryList.getCurrencyList(base: "BRL")
+        NavigationView {
+            List {
+                ForEach(countryList.countries) { country in
+                    Text("\(country.currency.code): \(country.currency.currentValue!)")
+                }
             }
+            .navigationBarTitle("Currencies")
+            .onAppear {
+
+            }
+
+        }
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

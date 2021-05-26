@@ -10,26 +10,57 @@ import SwiftUI
 
 class CountryListViewModel: ObservableObject {
     
-    @Published var baseCurrency = Currency(code: "USD")
+    var countriesJsonUrl = URL(fileURLWithPath: "SavedCountries", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
+    
+    @Published var baseCountry = Country(name: "Brazil", currency: Currency(code: "BRL"))
     @Published var countries = [Country]()
-    private var rates = [String:Double]()
+    private var rates = [String:Double]() {
+        didSet {
+            countries = Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0))) }
+//
+//            countries.append(Country(name: "United States", currency: Currency(code: "USD", currentValue: getCurrentValue(for: "USD"))))
+            
+            print(countries)
+        }
+    }
     
     init() {
-        getCurrencyList(base: baseCurrency.code)
+        getCurrencyList(base: baseCountry.currency.code)
+    }
+    //MARK: - JSON local persistence
+    
+//    func loadCountriesJsonURL() {
+//        guard FileManager.default.fileExists(atPath: countriesJsonUrl.path) else { return }
+//        
+////        let filePath = FileManager.documentsDirectoryURL.path
+////        print(filePath)
+//
+//        let decoder = JSONDecoder()
+//        
+//        do {
+//            let countriesData = try Data(contentsOf: countriesJsonUrl)
+////            list = try decoder.decode([Tool].self, from: countriesData)
+//        } catch let error {
+//            print(error)
+//        }
+//    }
+    
+    func saveCountriesJsonURL() {
+        
     }
     
     func getFlag(country code: String) -> Flag? {
         return nil
     }
     
-    func getCurrentValue(for country: Country) -> Double {
-        return country.currency.currentValue ?? 0.0
+    func getCurrentValue(for code: String) -> Double {
+        return rates[code] ?? 0.0
     }
     
     func addCountry() {
         
     }
-    
+      
     
     //MARK: - Get request
     func getCurrencyList(base: String) {
@@ -39,7 +70,7 @@ class CountryListViewModel: ObservableObject {
             do {
                 if let data = data {
                     let decodedData = try JSONDecoder().decode(CurrencyReponse.self, from: data)
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
                         self.rates = decodedData.rates
                     }
 
@@ -56,6 +87,7 @@ class CountryListViewModel: ObservableObject {
     }
 
 }
+
 
 
 

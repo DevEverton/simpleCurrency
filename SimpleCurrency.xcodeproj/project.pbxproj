@@ -15,6 +15,8 @@
 		5071FAE7265920BB00F19955 /* Flag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE6265920BB00F19955 /* Flag.swift */; };
 		5071FAEA265922D000F19955 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE9265922CF00F19955 /* Country.swift */; };
 		5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAEC2659270E00F19955 /* CountryListViewModel.swift */; };
+		50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4E01265C82CB00CB8667 /* Constants.swift */; };
+		50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F32379265D208300CF7BEC /* Country+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		5071FAE6265920BB00F19955 /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		5071FAE9265922CF00F19955 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		5071FAEC2659270E00F19955 /* CountryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListViewModel.swift; sourceTree = "<group>"; };
+		50AB4E01265C82CB00CB8667 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		50F32379265D208300CF7BEC /* Country+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 		5071FACE26591A3700F19955 /* SimpleCurrency */ = {
 			isa = PBXGroup;
 			children = (
+				50AB4E00265C82BC00CB8667 /* Constants */,
+				50AB4DFB265C7BA600CB8667 /* Extensions */,
 				5071FADF26591A4D00F19955 /* Models */,
 				5071FAE026591A5500F19955 /* ViewModels */,
 				5071FAE126591A6700F19955 /* Views */,
@@ -103,6 +109,22 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		50AB4DFB265C7BA600CB8667 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				50F32379265D208300CF7BEC /* Country+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		50AB4E00265C82BC00CB8667 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				50AB4E01265C82CB00CB8667 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,8 +198,10 @@
 			files = (
 				5071FAE426591F7B00F19955 /* Currency.swift in Sources */,
 				5071FAD226591A3700F19955 /* ContentView.swift in Sources */,
+				50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */,
 				5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */,
 				5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */,
+				50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */,
 				5071FAEA265922D000F19955 /* Country.swift in Sources */,
 				5071FAE7265920BB00F19955 /* Flag.swift in Sources */,
 			);
