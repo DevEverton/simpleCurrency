@@ -5,65 +5,85 @@
 //  Created by Everton Carneiro on 22/05/21.
 //
 
+import Combine
 import Foundation
-import SwiftUI
 
 class CountryListViewModel: ObservableObject {
     
     var countriesJsonUrl = URL(fileURLWithPath: "SavedCountries", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
     
     @Published var baseCountry = Country(name: "Brazil", currency: Currency(code: "BRL"))
-    @Published var countries = [Country]()
+    @Published var allCountries = [Country]()
+    @Published var countries = [Country]() {
+        didSet {
+            saveJSONCountryList()
+        }
+    }
+
     private var rates = [String:Double]() {
         didSet {
-            countries = Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0))) }
-//
-//            countries.append(Country(name: "United States", currency: Currency(code: "USD", currentValue: getCurrentValue(for: "USD"))))
-            
-            print(countries)
+            allCountries = Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0))) }
+            updateValuesFor(countries)
+
         }
     }
     
     init() {
-        getCurrencyList(base: baseCountry.currency.code)
+        getCurrencyList(from: baseCountry.currency.code)
+        loadJSONCountryList()
     }
+    
     //MARK: - JSON local persistence
     
-//    func loadCountriesJsonURL() {
-//        guard FileManager.default.fileExists(atPath: countriesJsonUrl.path) else { return }
-//        
-////        let filePath = FileManager.documentsDirectoryURL.path
-////        print(filePath)
-//
-//        let decoder = JSONDecoder()
-//        
-//        do {
-//            let countriesData = try Data(contentsOf: countriesJsonUrl)
-////            list = try decoder.decode([Tool].self, from: countriesData)
-//        } catch let error {
-//            print(error)
-//        }
-//    }
+    private func loadJSONCountryList() {
+        guard FileManager.default.fileExists(atPath: countriesJsonUrl.path) else { return }
+
+        let filePath = FileManager.documentsDirectoryURL.path
+        print(filePath)
+
+        let decoder = JSONDecoder()
+
+        do {
+            let countriesData = try Data(contentsOf: countriesJsonUrl)
+            countries = try decoder.decode([Country].self, from: countriesData)
+        } catch let error {
+            print(error)
+        }
+    }
     
-    func saveCountriesJsonURL() {
+    private func saveJSONCountryList() {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        do {
+            let data = try encoder.encode(countries)
+            try data.write(to: countriesJsonUrl, options: .atomicWrite)
+        } catch let error {
+            print(error)
+            
+        }
+    }
+
+    
+    func getFlagsFor(_ countries: [Country]) {
         
     }
     
-    func getFlag(country code: String) -> Flag? {
-        return nil
+    func updateValuesFor(_ countries: [Country]) {
+        self.countries = countries.map{ Country(name: $0.name, currency: Currency(code: $0.currency.code, currentValue: getCurrentValue(for: $0.currency.code)))  }
     }
     
     func getCurrentValue(for code: String) -> Double {
         return rates[code] ?? 0.0
     }
     
-    func addCountry() {
-        
+    func addCountry(country: Country) {
+        countries.append(Country(name: country.name, currency: Currency(code: country.currency.code, currentValue: getCurrentValue(for: country.currency.code))))
     }
-      
     
     //MARK: - Get request
-    func getCurrencyList(base: String) {
+    func getCurrencyList(from base: String) {
+                
         guard let url = URL(string: "https://api.exchangerate.host/latest?base=\(base)") else { return }
         
         URLSession.shared.dataTask(with: url) {(data, response, error) in
@@ -77,14 +97,18 @@ class CountryListViewModel: ObservableObject {
                 } else {
                     print("No data \(String(describing: error))")
                     
+                    
                 }
             } catch {
                 print("Error: \(error.localizedDescription)")
+                
             }
         }
         .resume()
 
     }
+      
+    
 
 }
 

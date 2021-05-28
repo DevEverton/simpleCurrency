@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5040E768265E979A00847988 /* AddCountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E767265E979A00847988 /* AddCountryViewModel.swift */; };
+		5040E76B265E994F00847988 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E76A265E994F00847988 /* NetworkManager.swift */; };
 		5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */; };
 		5071FAD226591A3700F19955 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAD126591A3700F19955 /* ContentView.swift */; };
 		5071FAD426591A3B00F19955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5071FAD326591A3B00F19955 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5040E767265E979A00847988 /* AddCountryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCountryViewModel.swift; sourceTree = "<group>"; };
+		5040E76A265E994F00847988 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		5071FACC26591A3700F19955 /* SimpleCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCurrencyApp.swift; sourceTree = "<group>"; };
 		5071FAD126591A3700F19955 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5040E769265E98B900847988 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5040E76A265E994F00847988 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		5071FAC326591A3700F19955 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +81,7 @@
 				5071FADF26591A4D00F19955 /* Models */,
 				5071FAE026591A5500F19955 /* ViewModels */,
 				5071FAE126591A6700F19955 /* Views */,
+				5040E769265E98B900847988 /* Managers */,
 				5071FAD126591A3700F19955 /* ContentView.swift */,
 				5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */,
 				5071FAD326591A3B00F19955 /* Assets.xcassets */,
@@ -100,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				5071FAEC2659270E00F19955 /* CountryListViewModel.swift */,
+				5040E767265E979A00847988 /* AddCountryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -198,9 +212,11 @@
 			files = (
 				5071FAE426591F7B00F19955 /* Currency.swift in Sources */,
 				5071FAD226591A3700F19955 /* ContentView.swift in Sources */,
+				5040E76B265E994F00847988 /* NetworkManager.swift in Sources */,
 				50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */,
 				5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */,
 				5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */,
+				5040E768265E979A00847988 /* AddCountryViewModel.swift in Sources */,
 				50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */,
 				5071FAEA265922D000F19955 /* Country.swift in Sources */,
 				5071FAE7265920BB00F19955 /* Flag.swift in Sources */,

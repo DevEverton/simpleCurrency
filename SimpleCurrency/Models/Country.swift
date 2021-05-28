@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Country: Identifiable {
+struct Country: Identifiable, Codable {
     var id = UUID()
     var name: String
     var currency: Currency
