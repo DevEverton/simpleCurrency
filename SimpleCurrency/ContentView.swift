@@ -9,12 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var countryList = CountryListViewModel()
+
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(countryList.countries) { country in
-                    Text("\(country.currency.code): \(country.currency.currentValue!)")
+                    HStack {
+                        AsyncImage(url: URL(string: "https://www.countryflags.io/\(country.flagCode)/flat/64.png")!) {
+                            Color.blue
+                        } image: { image in
+                            Image(uiImage:  image)
+                        }
+                        Text("\(country.currency.code): \(country.currency.currentValue!)")
+                    }
                 }
             }
             .navigationBarTitle("Currencies")
