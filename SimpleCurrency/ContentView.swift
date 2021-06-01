@@ -16,13 +16,21 @@ struct ContentView: View {
             List {
                 ForEach(countryList.countries) { country in
                     HStack {
-                        AsyncImage(url: URL(string: "https://www.countryflags.io/\(country.flagCode)/flat/64.png")!) {
-                            Color.blue
+                        AsyncImage(url: Constants.flagLink(country.flagCode)) {
+                            ProgressView()
+                            
                         } image: { image in
                             Image(uiImage:  image)
+                                .resizable()
                         }
+                        .frame(width: 64, height: 64)
+                        
+                        Spacer()
+                        
                         Text("\(country.currency.code): \(country.currency.currentValue!)")
                     }
+                    .animation(.linear(duration: 0.5))
+
                 }
             }
             .navigationBarTitle("Currencies")

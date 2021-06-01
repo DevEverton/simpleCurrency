@@ -11,6 +11,7 @@
 		5040E7772665AB9B00847988 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E7762665AB9B00847988 /* ImageCache.swift */; };
 		5040E7792665ABA400847988 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E7782665ABA400847988 /* ImageLoader.swift */; };
 		5040E77B2665ABB100847988 /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E77A2665ABB100847988 /* EnvironmentValues+ImageCache.swift */; };
+		5040E77F26666F6500847988 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E77E26666F6500847988 /* HeaderView.swift */; };
 		5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */; };
 		5071FAD226591A3700F19955 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAD126591A3700F19955 /* ContentView.swift */; };
 		5071FAD426591A3B00F19955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5071FAD326591A3B00F19955 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		5040E7762665AB9B00847988 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		5040E7782665ABA400847988 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		5040E77A2665ABB100847988 /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
+		5040E77E26666F6500847988 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		5071FACC26591A3700F19955 /* SimpleCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCurrencyApp.swift; sourceTree = "<group>"; };
 		5071FAD126591A3700F19955 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		5071FAE126591A6700F19955 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5040E77E26666F6500847988 /* HeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				5040E77B2665ABB100847988 /* EnvironmentValues+ImageCache.swift in Sources */,
 				50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */,
 				5040E7792665ABA400847988 /* ImageLoader.swift in Sources */,
+				5040E77F26666F6500847988 /* HeaderView.swift in Sources */,
 				5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */,
 				5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */,
 				50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */,
