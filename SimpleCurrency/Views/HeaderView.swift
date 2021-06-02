@@ -14,8 +14,8 @@ struct HeaderView: View {
     var body: some View {
         HStack(alignment: .bottom) {
             Text("sCurrency")
-                    .font(.system(size: 30, weight: .black, design: .default))
-                .foregroundColor(Color("title"))
+                    .font(.system(size: 35, weight: .bold, design: .default))
+                    .foregroundColor(Color("title"))
             Spacer()
             Text("Updated on \(lastUpdated)")
                 .font(.system(size: 12, weight: .light, design: .default))

@@ -16,14 +16,7 @@ struct ContentView: View {
             List {
                 ForEach(countryList.countries) { country in
                     HStack {
-                        AsyncImage(url: Constants.flagLink(country.flagCode)) {
-                            ProgressView()
-                            
-                        } image: { image in
-                            Image(uiImage:  image)
-                                .resizable()
-                        }
-                        .frame(width: 64, height: 64)
+
                         
                         Spacer()
                         

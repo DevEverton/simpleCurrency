@@ -14,7 +14,7 @@ class CountryListViewModel: ObservableObject {
     var countriesJsonUrl = URL(fileURLWithPath: "SavedCountries", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
     
     
-    @Published var baseCountry = Country(name: "Brazil", currency: Currency(code: "BRL"), flagCode: "BR")
+    @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US")
     @Published var allCountries = [Country]()
     @Published var countries = [Country]() {
         didSet {
@@ -25,7 +25,6 @@ class CountryListViewModel: ObservableObject {
     private var rates = [String:Double]() {
         didSet {
             allCountries = Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0)), flagCode: $0.value.1) }
-            
             updateValuesFor(countries)
 
         }
@@ -73,6 +72,7 @@ class CountryListViewModel: ObservableObject {
     
     func updateValuesFor(_ countries: [Country]) {
         self.countries = countries.map{ Country(name: $0.name, currency: Currency(code: $0.currency.code, currentValue: getCurrentValue(for: $0.currency.code)), flagCode: getFlagCode(from: $0.name))  }
+        self.baseCountry.currency.currentValue = getCurrentValue(for: baseCountry.currency.code)
     }
     
     func getCurrentValue(for code: String) -> Double {
