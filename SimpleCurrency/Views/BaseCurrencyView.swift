@@ -14,17 +14,30 @@ struct BaseCurrencyView: View {
         VStack {
             HStack {
                 Spacer()
-                AsyncImage(url: Constants.flagLink(countryVM.baseCountry.flagCode)) {
-                    ProgressView()
-                    
-                } image: { image in
-                    Image(uiImage:  image)
-                        .resizable()
+                HStack {
+                    AsyncImage(url: Constants.flagLink(countryVM.baseCountry.flagCode)) {
+                        ProgressView()
+                        
+                    } image: { image in
+                        Image(uiImage:  image)
+                            .resizable()
+                    }
+                    .frame(width: 32, height: 32)
+                    .animation(.easeIn(duration: 0.5))
                 }
-                .frame(width: 32, height: 32)
-                .animation(.easeIn(duration: 0.5))
+                Button(action: {
+                    //TODO: - Call modal view with all countries
+                    
+                    
+                }, label: {
+                    Image(systemName: "chevron.down.circle.fill")
+                        .font(.system(size: 16, weight: .regular))
+                        .foregroundColor(Color("purple1"))
+                })
+                
                 
             }
+            .padding(10)
             HStack(alignment: .bottom) {
                 Spacer()
                 Text(countryVM.baseCountry.currency.code)

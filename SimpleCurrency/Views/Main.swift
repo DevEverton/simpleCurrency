@@ -15,12 +15,19 @@ struct Main: View {
         VStack {
             HeaderView()
             Divider()
-                .padding(.horizontal, 10)
             BaseCurrencyView()
-                .padding(.horizontal, 10)
             Divider()
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(countryVM.countries) { country in
+                        CardView(country: country)
+                            
+                    }
+                }
+            }
             Spacer()
         }
+        .padding(.horizontal, 10)
     }
 }
 

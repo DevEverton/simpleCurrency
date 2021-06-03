@@ -14,8 +14,8 @@
 		5040E77F26666F6500847988 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E77E26666F6500847988 /* HeaderView.swift */; };
 		5040E781266701F100847988 /* BaseCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E780266701F000847988 /* BaseCurrencyView.swift */; };
 		5040E7832667046900847988 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E7822667046900847988 /* Main.swift */; };
+		5040E7852669553500847988 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E7842669553500847988 /* CardView.swift */; };
 		5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */; };
-		5071FAD226591A3700F19955 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAD126591A3700F19955 /* ContentView.swift */; };
 		5071FAD426591A3B00F19955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5071FAD326591A3B00F19955 /* Assets.xcassets */; };
 		5071FAD726591A3B00F19955 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5071FAD626591A3B00F19955 /* Preview Assets.xcassets */; };
 		5071FAE426591F7B00F19955 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE326591F7B00F19955 /* Currency.swift */; };
@@ -33,9 +33,9 @@
 		5040E77E26666F6500847988 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		5040E780266701F000847988 /* BaseCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyView.swift; sourceTree = "<group>"; };
 		5040E7822667046900847988 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		5040E7842669553500847988 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		5071FACC26591A3700F19955 /* SimpleCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCurrencyApp.swift; sourceTree = "<group>"; };
-		5071FAD126591A3700F19955 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5071FAD326591A3B00F19955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5071FAD626591A3B00F19955 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5071FAD826591A3B00F19955 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,7 +93,6 @@
 				5071FADF26591A4D00F19955 /* Models */,
 				5071FAE026591A5500F19955 /* ViewModels */,
 				5071FAE126591A6700F19955 /* Views */,
-				5071FAD126591A3700F19955 /* ContentView.swift */,
 				5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */,
 				5071FAD326591A3B00F19955 /* Assets.xcassets */,
 				5071FAD826591A3B00F19955 /* Info.plist */,
@@ -133,6 +132,7 @@
 				5040E7822667046900847988 /* Main.swift */,
 				5040E77E26666F6500847988 /* HeaderView.swift */,
 				5040E780266701F000847988 /* BaseCurrencyView.swift */,
+				5040E7842669553500847988 /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,7 +225,7 @@
 				5040E7772665AB9B00847988 /* ImageCache.swift in Sources */,
 				5071FAE426591F7B00F19955 /* Currency.swift in Sources */,
 				5040E7752665AB8100847988 /* AsyncImage.swift in Sources */,
-				5071FAD226591A3700F19955 /* ContentView.swift in Sources */,
+				5040E7852669553500847988 /* CardView.swift in Sources */,
 				5040E77B2665ABB100847988 /* EnvironmentValues+ImageCache.swift in Sources */,
 				50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */,
 				5040E7792665ABA400847988 /* ImageLoader.swift in Sources */,
