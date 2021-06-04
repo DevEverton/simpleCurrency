@@ -31,7 +31,7 @@ struct BaseCurrencyView: View {
                     
                 }, label: {
                     Image(systemName: "chevron.down.circle.fill")
-                        .font(.system(size: 16, weight: .regular))
+                        .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(Color("purple1"))
                 })
                 
@@ -41,9 +41,10 @@ struct BaseCurrencyView: View {
             HStack(alignment: .bottom) {
                 Spacer()
                 Text(countryVM.baseCountry.currency.code)
-                    .font(.system(size: 20, weight: .bold, design: .default))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .padding(.bottom, 10)
                 Text(String(format: "%.2f", countryVM.baseCountry.currency.currentValue!))
-                    .font(.system(size: 50, weight: .medium, design: .default))
+                    .font(.system(size: 55, weight: .regular, design: .rounded))
             }
         }
         .frame(maxWidth: .infinity)

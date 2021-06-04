@@ -82,6 +82,8 @@ class CountryListViewModel: ObservableObject {
     
     func addCountry(country: Country) {
         countries.append(Country(name: country.name, currency: Currency(code: country.currency.code, currentValue: getCurrentValue(for: country.currency.code)), flagCode: getFlagCode(from: country.name)))
+        updateValuesFor(countries)
+
     }
     
     //MARK: - Get request

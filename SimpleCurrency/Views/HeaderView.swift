@@ -14,17 +14,18 @@ struct HeaderView: View {
     var body: some View {
         HStack(alignment: .bottom) {
             Text("sCurrency")
-                    .font(.system(size: 35, weight: .bold, design: .default))
-                    .foregroundColor(Color("title"))
+                .font(.system(size: 35, weight: .semibold, design: .rounded))
+                .foregroundColor(Color("title"))
+
             Spacer()
             Text("Updated on \(lastUpdated)")
-                .font(.system(size: 12, weight: .light, design: .default))
+                .font(.system(size: 12, weight: .light, design: .rounded))
             Button(action: {
                 //TODO: - Update the date value and call the API again
                 
             }, label: {
                 Image(systemName: "arrow.triangle.2.circlepath")
-                    .font(.system(size: 12, weight: .medium))
+                    .font(.system(size: 14, weight: .medium))
                     .foregroundColor(Color("purple1"))
             })
         }

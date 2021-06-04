@@ -17,6 +17,20 @@ struct Main: View {
             Divider()
             BaseCurrencyView()
             Divider()
+            HStack {
+                Spacer()
+                Button(action: {
+                    
+                    countryVM.addCountry(country: Country(name: "Brazil", currency: Currency(code: "BRL", currentValue: 0.0), flagCode: "BRL"))
+                    
+                }, label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(Color("purple1"))
+                })
+            }
+            .padding([.trailing, .vertical], 10)
+
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(countryVM.countries) { country in

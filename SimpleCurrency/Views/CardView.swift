@@ -19,7 +19,7 @@ struct CardView: View {
                 HStack {
                     Spacer()
                     Text(country.currency.code)
-                        .font(.system(size: 16, weight: .bold, design: .default))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
 
                     AsyncImage(url: Constants.flagLink(country.flagCode)) {
@@ -34,7 +34,7 @@ struct CardView: View {
                 HStack(alignment: .bottom) {
                     Spacer()
                     Text(String(format: "%.2f", country.currency.currentValue!))
-                        .font(.system(size: 48, weight: .medium, design: .default))
+                        .font(.system(size: 48, weight: .regular, design: .rounded))
                         .foregroundColor(.white)
                 }
 
@@ -44,11 +44,12 @@ struct CardView: View {
         }
         .frame(width: 250, height: 200)
         .background(
-            LinearGradient(gradient: Gradient(colors: [Color("purple1"), Color("purple2")]), startPoint: .topLeading, endPoint: .bottomTrailing).opacity(0.8)
+            LinearGradient(gradient: Gradient(colors: [Color("purple1"), Color("purple2")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .opacity(0.8)
         )
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .padding()
-        .shadow(color: .gray.opacity(0.6), radius: 8, x: 10, y: 10)
+        .shadow(color: .gray.opacity(0.2), radius: 8, x: 10, y: 10)
         
 
     }
