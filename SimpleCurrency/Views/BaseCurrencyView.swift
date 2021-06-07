@@ -9,7 +9,9 @@ import SwiftUI
 
 struct BaseCurrencyView: View {
     @StateObject var countryVM = CountryListViewModel()
-
+    
+    @State var isSheetPresented = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -28,6 +30,7 @@ struct BaseCurrencyView: View {
                 Button(action: {
                     //TODO: - Call modal view with all countries
                     
+//                    isSheetPresented.toggle()
                     
                 }, label: {
                     Image(systemName: "chevron.down.circle.fill")
@@ -49,6 +52,11 @@ struct BaseCurrencyView: View {
         }
         .frame(maxWidth: .infinity)
         .frame(height: 250)
+        .sheet(isPresented: $isSheetPresented, content: {
+            //TODO: - Show all countries to choose the base country
+            
+        })
+
     }
 }
 

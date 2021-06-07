@@ -11,6 +11,9 @@ struct Main: View {
     
     @StateObject var countryVM = CountryListViewModel()
     
+    @State var isSheetPresented = false
+
+    
     var body: some View {
         VStack {
             HeaderView()
@@ -20,8 +23,7 @@ struct Main: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    
-                    countryVM.addCountry(country: Country(name: "Brazil", currency: Currency(code: "BRL", currentValue: 0.0), flagCode: "BRL"))
+                    isSheetPresented.toggle()
                     
                 }, label: {
                     Image(systemName: "plus.circle.fill")
@@ -35,13 +37,16 @@ struct Main: View {
                 HStack {
                     ForEach(countryVM.countries) { country in
                         CardView(country: country)
-                            
                     }
                 }
             }
             Spacer()
         }
         .padding(.horizontal, 10)
+        .sheet(isPresented: $isSheetPresented, content: {
+            AddCurrencyView(countryListVM: countryVM)
+        })
+
     }
 }
 
