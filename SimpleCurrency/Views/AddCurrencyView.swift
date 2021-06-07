@@ -23,12 +23,21 @@ struct AddCurrencyView: View {
                     ForEach(countryListVM.countries) { country in
                         CurrencyCell(country: country)
                     }
-                    .listStyle(PlainListStyle())
+                    .onDelete { indexSet in
+                        self.countryListVM.countries.remove(atOffsets: indexSet)
+
+                    }
+                    .listStyle(GroupedListStyle())
+
                 }
                 
                 Section(header: Text("All Currencies")) {
                     ForEach(countryListVM.allCountries) { country in
                         CurrencyCell(country: country)
+                    }
+                    .onDelete { indexSet in
+                        self.countryListVM.allCountries.remove(atOffsets: indexSet)
+
                     }
                     .listStyle(GroupedListStyle())
                 }
