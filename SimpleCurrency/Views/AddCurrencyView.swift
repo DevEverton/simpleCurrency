@@ -20,20 +20,20 @@ struct AddCurrencyView: View {
                 .padding(.horizontal, 10)
             List {
                 Section(header: Text("Selected Currencies")) {
-                    ForEach(countryListVM.countries) { country in
+                    ForEach(countryListVM.savedCountries) { country in
                         CurrencyCell(country: country)
                     }
                     .onDelete { indexSet in
-                        countryListVM.addBackToAllCountries(countryListVM.countries[indexSet.first!])
-                        countryListVM.sortAllCountries()
-                        countryListVM.countries.remove(atOffsets: indexSet)
+                        countryListVM.addBackToAllCountries(countryListVM.savedCountries[indexSet.first!])
+                        countryListVM.sortAddCountryList()
+                        countryListVM.savedCountries.remove(atOffsets: indexSet)
                     }
                     .listStyle(GroupedListStyle())
                     .animation(.linear(duration: 0.3))
                 }
                 
                 Section(header: Text("All Currencies")) {
-                    ForEach(countryListVM.allCountries) { country in
+                    ForEach(countryListVM.addCountryList) { country in
                         CurrencyCell(country: country)
                             .onTapGesture {
                                 countryListVM.addCountry(country: country)

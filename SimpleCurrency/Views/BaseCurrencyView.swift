@@ -37,17 +37,16 @@ struct BaseCurrencyView: View {
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(Color("purple1"))
                 })
-                
-                
+     
             }
             .padding(10)
             HStack(alignment: .bottom) {
                 Spacer()
+                Text(String(format: "%.2f", countryVM.baseCountry.currency.currentValue!))
+                    .font(.system(size: 55, weight: .regular, design: .rounded))
                 Text(countryVM.baseCountry.currency.code)
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .padding(.bottom, 10)
-                Text(String(format: "%.2f", countryVM.baseCountry.currency.currentValue!))
-                    .font(.system(size: 55, weight: .regular, design: .rounded))
             }
         }
         .frame(maxWidth: .infinity)

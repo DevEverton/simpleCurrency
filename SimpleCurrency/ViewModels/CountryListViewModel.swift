@@ -14,10 +14,11 @@ class CountryListViewModel: ObservableObject {
     var countriesJsonUrl = URL(fileURLWithPath: "SavedCountries", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
             
     @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US")
-    
     @Published var allCountries = [Country]()
     
-    @Published var countries = [Country]() {
+    @Published var addCountryList = [Country]()
+    
+    @Published var savedCountries = [Country]() {
         didSet {
             saveJSONCountryList()
         }
@@ -26,9 +27,12 @@ class CountryListViewModel: ObservableObject {
     private var rates = [String:Double]()
     {
         didSet {
-            allCountries = Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0)), flagCode: $0.value.1) }
-            sortAllCountries()
-            updateValuesFor(countries)
+            addCountryList = buildCountriesList()
+            allCountries = buildCountriesList()
+            
+            removeSavedCountries()
+            sortAddCountryList()
+            updateValuesFor(savedCountries)
 
         }
     }
@@ -50,7 +54,7 @@ class CountryListViewModel: ObservableObject {
 
         do {
             let countriesData = try Data(contentsOf: countriesJsonUrl)
-            countries = try decoder.decode([Country].self, from: countriesData)
+            savedCountries = try decoder.decode([Country].self, from: countriesData)
         } catch let error {
             print(error)
         }
@@ -61,7 +65,7 @@ class CountryListViewModel: ObservableObject {
         encoder.outputFormatting = .prettyPrinted
         
         do {
-            let data = try encoder.encode(countries)
+            let data = try encoder.encode(savedCountries)
             try data.write(to: countriesJsonUrl, options: .atomicWrite)
         } catch let error {
             print(error)
@@ -74,7 +78,7 @@ class CountryListViewModel: ObservableObject {
     }
     
     func updateValuesFor(_ countries: [Country]) {
-        self.countries = countries.map{ Country(name: $0.name, currency: Currency(code: $0.currency.code, currentValue: getCurrentValue(for: $0.currency.code)), flagCode: getFlagCode(from: $0.name))  }
+        self.savedCountries = countries.map{ Country(name: $0.name, currency: Currency(code: $0.currency.code, currentValue: getCurrentValue(for: $0.currency.code)), flagCode: getFlagCode(from: $0.name))  }
         self.baseCountry.currency.currentValue = getCurrentValue(for: baseCountry.currency.code)
     }
     
@@ -84,24 +88,24 @@ class CountryListViewModel: ObservableObject {
 
     
     func addCountry(country: Country) {
-        countries.append(Country(name: country.name, currency: Currency(code: country.currency.code, currentValue: getCurrentValue(for: country.currency.code)), flagCode: getFlagCode(from: country.name)))
-        updateValuesFor(countries)
+        savedCountries.append(Country(name: country.name, currency: Currency(code: country.currency.code, currentValue: getCurrentValue(for: country.currency.code)), flagCode: getFlagCode(from: country.name)))
+        updateValuesFor(savedCountries)
 
     }
     
     func addBackToAllCountries(_ country: Country) {
-        allCountries.append(Country(name: country.name, currency: Currency(code: country.currency.code, currentValue: getCurrentValue(for: country.currency.code)), flagCode: getFlagCode(from: country.name)))
+        addCountryList.append(Country(name: country.name, currency: Currency(code: country.currency.code, currentValue: getCurrentValue(for: country.currency.code)), flagCode: getFlagCode(from: country.name)))
     }
     
     func remove(country: Country) {
         if let index = getIndexOf(country: country) {
-            allCountries.remove(at: index)
+            addCountryList.remove(at: index)
         }
     }
     
     func getIndexOf(country: Country) -> Int? {
         
-        for (index, element) in allCountries.enumerated() {
+        for (index, element) in addCountryList.enumerated() {
             if element.id == country.id {
                 return index
             }
@@ -109,10 +113,22 @@ class CountryListViewModel: ObservableObject {
         return nil
     }
     
-    func sortAllCountries() {
-       allCountries = allCountries.sorted(by: { $0.name < $1.name })
+    func sortAddCountryList() {
+       addCountryList = addCountryList.sorted(by: { $0.name < $1.name })
     }
     
+    func removeSavedCountries() {
+        if !savedCountries.isEmpty {
+            for country in savedCountries {
+                addCountryList = addCountryList.filter { $0.name != country.name }
+            }
+        }
+        
+    }
+    
+    func buildCountriesList() -> [Country] {
+        Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0)), flagCode: $0.value.1) }
+    }
     
     //MARK: - Get request
     func getCurrencyList(from base: String) {

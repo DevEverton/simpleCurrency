@@ -35,7 +35,7 @@ struct Main: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(countryVM.countries) { country in
+                    ForEach(countryVM.savedCountries) { country in
                         CardView(country: country)
                             .padding(.top)
                             .padding(.horizontal, 5)
