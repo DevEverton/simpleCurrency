@@ -22,9 +22,10 @@ struct AddCurrencyView: View {
                 Section(header: Text("Selected Currencies")) {
                     ForEach(countryListVM.countries) { country in
                         CurrencyCell(country: country)
+                            
                     }
                     .onDelete { indexSet in
-                        self.countryListVM.countries.remove(atOffsets: indexSet)
+                        countryListVM.countries.remove(atOffsets: indexSet)
 
                     }
                     .listStyle(GroupedListStyle())
@@ -34,17 +35,20 @@ struct AddCurrencyView: View {
                 Section(header: Text("All Currencies")) {
                     ForEach(countryListVM.allCountries) { country in
                         CurrencyCell(country: country)
-                    }
-                    .onDelete { indexSet in
-                        self.countryListVM.allCountries.remove(atOffsets: indexSet)
-
+                            .onTapGesture {
+                                countryListVM.addCountry(country: country)
+                                countryListVM.remove(country: country)
+                            }
+                            
                     }
                     .listStyle(GroupedListStyle())
                 }
 
             }
         }
+
     }
+
 }
 
 struct AddCurrencyView_Previews: PreviewProvider {

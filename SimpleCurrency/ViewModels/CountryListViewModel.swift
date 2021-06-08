@@ -27,7 +27,6 @@ class CountryListViewModel: ObservableObject {
     {
         didSet {
             allCountries = Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0)), flagCode: $0.value.1) }
-            
             updateValuesFor(countries)
 
         }
@@ -88,6 +87,27 @@ class CountryListViewModel: ObservableObject {
         updateValuesFor(countries)
 
     }
+    
+    func addBackToAllCountries(_ country: Country) {
+        allCountries.append(Country(name: country.name, currency: Currency(code: country.currency.code, currentValue: getCurrentValue(for: country.currency.code)), flagCode: getFlagCode(from: country.name)))
+    }
+    
+    func remove(country: Country) {
+        if let index = getIndexOf(country: country) {
+            allCountries.remove(at: index)
+        }
+    }
+    
+    func getIndexOf(country: Country) -> Int? {
+        
+        for (index, element) in allCountries.enumerated() {
+            if element.id == country.id {
+                return index
+            }
+        }
+        return nil
+    }
+    
     
     //MARK: - Get request
     func getCurrencyList(from base: String) {
