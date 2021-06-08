@@ -22,14 +22,14 @@ struct AddCurrencyView: View {
                 Section(header: Text("Selected Currencies")) {
                     ForEach(countryListVM.countries) { country in
                         CurrencyCell(country: country)
-                            
                     }
                     .onDelete { indexSet in
+                        countryListVM.addBackToAllCountries(countryListVM.countries[indexSet.first!])
+                        countryListVM.sortAllCountries()
                         countryListVM.countries.remove(atOffsets: indexSet)
-
                     }
                     .listStyle(GroupedListStyle())
-
+                    .animation(.linear(duration: 0.3))
                 }
                 
                 Section(header: Text("All Currencies")) {
@@ -39,12 +39,14 @@ struct AddCurrencyView: View {
                                 countryListVM.addCountry(country: country)
                                 countryListVM.remove(country: country)
                             }
-                            
                     }
                     .listStyle(GroupedListStyle())
+                    .animation(.easeOut(duration: 0.5))
+
                 }
 
             }
+
         }
 
     }

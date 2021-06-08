@@ -37,6 +37,8 @@ struct Main: View {
                 HStack {
                     ForEach(countryVM.countries) { country in
                         CardView(country: country)
+                            .padding(.top)
+                            .padding(.horizontal, 5)
                     }
                 }
             }

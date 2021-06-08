@@ -12,21 +12,22 @@ import Foundation
 class CountryListViewModel: ObservableObject {
     
     var countriesJsonUrl = URL(fileURLWithPath: "SavedCountries", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
-        
-    var network = NetworkManager()
-    
+            
     @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US")
+    
     @Published var allCountries = [Country]()
+    
     @Published var countries = [Country]() {
         didSet {
             saveJSONCountryList()
         }
     }
 
-    var rates = [String:Double]()
+    private var rates = [String:Double]()
     {
         didSet {
             allCountries = Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0)), flagCode: $0.value.1) }
+            sortAllCountries()
             updateValuesFor(countries)
 
         }
@@ -106,6 +107,10 @@ class CountryListViewModel: ObservableObject {
             }
         }
         return nil
+    }
+    
+    func sortAllCountries() {
+       allCountries = allCountries.sorted(by: { $0.name < $1.name })
     }
     
     
