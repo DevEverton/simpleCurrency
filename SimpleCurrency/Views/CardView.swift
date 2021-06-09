@@ -27,6 +27,7 @@ struct CardView: View {
                     } image: { image in
                         Image(uiImage:  image)
                             .resizable()
+
                     }
                     .frame(width: 32, height: 32)
                     .animation(.easeIn(duration: 0.5))

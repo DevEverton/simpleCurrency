@@ -18,7 +18,7 @@ struct Main: View {
         VStack {
             HeaderView()
             Divider()
-            BaseCurrencyView()
+            BaseCurrencyView(countryListVM: countryVM)
             Divider()
             HStack {
                 Spacer()

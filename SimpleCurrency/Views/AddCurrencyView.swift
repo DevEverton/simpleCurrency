@@ -14,7 +14,10 @@ struct AddCurrencyView: View {
     @State var searchText = ""
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            Text("Add new")
+                .font(.system(size: 30, weight: .semibold, design: .rounded))
+                .padding(.leading, 10)
             SearchBar(searchText: $searchText)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 10)
@@ -28,7 +31,6 @@ struct AddCurrencyView: View {
                         countryListVM.sortAddCountryList()
                         countryListVM.savedCountries.remove(atOffsets: indexSet)
                     }
-                    .listStyle(GroupedListStyle())
                     .animation(.linear(duration: 0.3))
                 }
                 
@@ -40,7 +42,6 @@ struct AddCurrencyView: View {
                                 countryListVM.remove(country: country)
                             }
                     }
-                    .listStyle(GroupedListStyle())
                     .animation(.easeOut(duration: 0.5))
 
                 }

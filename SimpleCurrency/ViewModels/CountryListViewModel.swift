@@ -14,6 +14,7 @@ class CountryListViewModel: ObservableObject {
     var countriesJsonUrl = URL(fileURLWithPath: "SavedCountries", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
             
     @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US")
+    
     @Published var allCountries = [Country]()
     
     @Published var addCountryList = [Country]()
@@ -27,9 +28,10 @@ class CountryListViewModel: ObservableObject {
     private var rates = [String:Double]()
     {
         didSet {
+            print("Rates were set!")
             addCountryList = buildCountriesList()
             allCountries = buildCountriesList()
-            
+            sortAllCountries()
             removeSavedCountries()
             sortAddCountryList()
             updateValuesFor(savedCountries)
@@ -114,7 +116,11 @@ class CountryListViewModel: ObservableObject {
     }
     
     func sortAddCountryList() {
-       addCountryList = addCountryList.sorted(by: { $0.name < $1.name })
+      addCountryList = addCountryList.sorted(by: { $0.name < $1.name })
+    }
+    
+    func sortAllCountries() {
+      allCountries = allCountries.sorted(by: { $0.name < $1.name })
     }
     
     func removeSavedCountries() {
