@@ -6,12 +6,12 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CardView: View {
     
-    var country: Country
-    
-    
+    let country: Country
+
     var body: some View {
         
         VStack {
@@ -21,16 +21,10 @@ struct CardView: View {
                     Text(country.currency.code)
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
+                    AnimatedImage(url: Constants.flagLink(country.flagCode))
+                        .resizable()
+                        .frame(width: 32, height: 32)
 
-                    AsyncImage(url: Constants.flagLink(country.flagCode)) {
-                        ProgressView()
-                    } image: { image in
-                        Image(uiImage:  image)
-                            .resizable()
-
-                    }
-                    .frame(width: 32, height: 32)
-                    .animation(.easeIn(duration: 0.5))
                 }
                 HStack(alignment: .bottom) {
                     Spacer()

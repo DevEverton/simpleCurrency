@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CurrencyCell: View {
     
@@ -13,15 +14,9 @@ struct CurrencyCell: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: Constants.flagLink(country.flagCode)) {
-                ProgressView()
-                
-            } image: { image in
-                Image(uiImage:  image)
-                    .resizable()
-            }
-            .frame(width: 44, height: 44)
-            .animation(.easeIn(duration: 0.5))
+            AnimatedImage(url: Constants.flagLink(country.flagCode))
+                .resizable()
+                .frame(width: 32, height: 32)
             Text("\(country.name) (\(country.currency.code))")
                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                 .padding(.leading, 10)

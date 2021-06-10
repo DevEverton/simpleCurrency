@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HeaderView: View {
+    @StateObject var countryListVM: CountryListViewModel
     
     @State var lastUpdated = "01/01/2001"
     
@@ -22,6 +23,7 @@ struct HeaderView: View {
                 .font(.system(size: 12, weight: .light, design: .rounded))
             Button(action: {
                 //TODO: - Update the date value and call the API again
+                countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
                 
             }, label: {
                 Image(systemName: "arrow.triangle.2.circlepath")
@@ -35,7 +37,7 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView()
+        HeaderView(countryListVM: CountryListViewModel())
             .previewLayout(.sizeThatFits)
 
             

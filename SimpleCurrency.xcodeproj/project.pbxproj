@@ -3,14 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5040E7752665AB8100847988 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E7742665AB8000847988 /* AsyncImage.swift */; };
-		5040E7772665AB9B00847988 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E7762665AB9B00847988 /* ImageCache.swift */; };
-		5040E7792665ABA400847988 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E7782665ABA400847988 /* ImageLoader.swift */; };
-		5040E77B2665ABB100847988 /* EnvironmentValues+ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E77A2665ABB100847988 /* EnvironmentValues+ImageCache.swift */; };
 		5040E77F26666F6500847988 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E77E26666F6500847988 /* HeaderView.swift */; };
 		5040E781266701F100847988 /* BaseCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E780266701F000847988 /* BaseCurrencyView.swift */; };
 		5040E7832667046900847988 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E7822667046900847988 /* Main.swift */; };
@@ -25,15 +21,12 @@
 		5071FAE426591F7B00F19955 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE326591F7B00F19955 /* Currency.swift */; };
 		5071FAEA265922D000F19955 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE9265922CF00F19955 /* Country.swift */; };
 		5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAEC2659270E00F19955 /* CountryListViewModel.swift */; };
+		507DBEB82672897400E8596A /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 507DBEB72672897400E8596A /* SDWebImageSwiftUI */; };
 		50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4E01265C82CB00CB8667 /* Constants.swift */; };
 		50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F32379265D208300CF7BEC /* Country+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5040E7742665AB8000847988 /* AsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
-		5040E7762665AB9B00847988 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
-		5040E7782665ABA400847988 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		5040E77A2665ABB100847988 /* EnvironmentValues+ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EnvironmentValues+ImageCache.swift"; sourceTree = "<group>"; };
 		5040E77E26666F6500847988 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		5040E780266701F000847988 /* BaseCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyView.swift; sourceTree = "<group>"; };
 		5040E7822667046900847988 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -59,23 +52,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507DBEB82672897400E8596A /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5040E7732665AB5B00847988 /* AsyncImage */ = {
-			isa = PBXGroup;
-			children = (
-				5040E7742665AB8000847988 /* AsyncImage.swift */,
-				5040E7762665AB9B00847988 /* ImageCache.swift */,
-				5040E7782665ABA400847988 /* ImageLoader.swift */,
-				5040E77A2665ABB100847988 /* EnvironmentValues+ImageCache.swift */,
-			);
-			path = AsyncImage;
-			sourceTree = "<group>";
-		};
 		5071FAC326591A3700F19955 = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */,
-				5040E7732665AB5B00847988 /* AsyncImage */,
 				50AB4E00265C82BC00CB8667 /* Constants */,
 				50AB4DFB265C7BA600CB8667 /* Extensions */,
 				5071FADF26591A4D00F19955 /* Models */,
@@ -181,6 +163,9 @@
 			dependencies = (
 			);
 			name = SimpleCurrency;
+			packageProductDependencies = (
+				507DBEB72672897400E8596A /* SDWebImageSwiftUI */,
+			);
 			productName = SimpleCurrency;
 			productReference = 5071FACC26591A3700F19955 /* SimpleCurrency.app */;
 			productType = "com.apple.product-type.application";
@@ -208,6 +193,9 @@
 				Base,
 			);
 			mainGroup = 5071FAC326591A3700F19955;
+			packageReferences = (
+				507DBEB62672897400E8596A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 5071FACD26591A3700F19955 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,15 +222,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5040E7772665AB9B00847988 /* ImageCache.swift in Sources */,
 				5071FAE426591F7B00F19955 /* Currency.swift in Sources */,
-				5040E7752665AB8100847988 /* AsyncImage.swift in Sources */,
 				5040E7852669553500847988 /* CardView.swift in Sources */,
-				5040E77B2665ABB100847988 /* EnvironmentValues+ImageCache.swift in Sources */,
 				5040E791266E57F000847988 /* CurrencyCell.swift in Sources */,
 				5040E787266A65FB00847988 /* AddCurrencyView.swift in Sources */,
 				50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */,
-				5040E7792665ABA400847988 /* ImageLoader.swift in Sources */,
 				5040E77F26666F6500847988 /* HeaderView.swift in Sources */,
 				5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */,
 				5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */,
@@ -440,6 +424,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		507DBEB62672897400E8596A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		507DBEB72672897400E8596A /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 507DBEB62672897400E8596A /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5071FAC426591A3700F19955 /* Project object */;
 }

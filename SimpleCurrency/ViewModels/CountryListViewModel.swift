@@ -28,7 +28,7 @@ class CountryListViewModel: ObservableObject {
     private var rates = [String:Double]()
     {
         didSet {
-            print("Rates were set!")
+            print("Rates updated!")
             addCountryList = buildCountriesList()
             allCountries = buildCountriesList()
             sortAllCountries()

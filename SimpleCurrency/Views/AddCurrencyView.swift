@@ -10,14 +10,14 @@ import SwiftUI
 struct AddCurrencyView: View {
     
     @StateObject var countryListVM: CountryListViewModel
-    
     @State var searchText = ""
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("Add new")
                 .font(.system(size: 30, weight: .semibold, design: .rounded))
-                .padding(.leading, 10)
+                .padding(.leading, 10)  
+                .padding(.top)
             SearchBar(searchText: $searchText)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 10)
@@ -47,6 +47,7 @@ struct AddCurrencyView: View {
                 }
 
             }
+            .listStyle(InsetGroupedListStyle())
 
         }
 

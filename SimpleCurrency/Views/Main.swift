@@ -16,7 +16,8 @@ struct Main: View {
     
     var body: some View {
         VStack {
-            HeaderView()
+            HeaderView(countryListVM: countryVM)
+                .padding(.top, 10)
             Divider()
             BaseCurrencyView(countryListVM: countryVM)
             Divider()

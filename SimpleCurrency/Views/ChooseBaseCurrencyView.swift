@@ -17,6 +17,8 @@ struct ChooseBaseCurrencyView: View {
             Text("All Currencies")
                 .font(.system(size: 30, weight: .semibold, design: .rounded))
                 .padding(.leading, 10)
+                .padding(.top)
+            
             SearchBar(searchText: $searchText)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 10)
@@ -27,6 +29,7 @@ struct ChooseBaseCurrencyView: View {
                             .onTapGesture {
                                 countryListVM.baseCountry = country
                                 countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
+                                print(countryListVM.baseCountry.flagCode)
                             }
                         Spacer()
                         if countryListVM.baseCountry.name == country.name {
@@ -40,6 +43,8 @@ struct ChooseBaseCurrencyView: View {
                 }
                 .animation(.easeOut(duration: 0.5))
             }
+            .listStyle(InsetGroupedListStyle())
+
 
             
         }

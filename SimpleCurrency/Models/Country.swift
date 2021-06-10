@@ -8,7 +8,8 @@
 import UIKit
 import Foundation
 
-struct Country: Identifiable, Codable {
+struct Country: Identifiable, Codable{
+
     var id = UUID()
     var name: String
     var currency: Currency
