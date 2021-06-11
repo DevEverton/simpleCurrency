@@ -27,15 +27,15 @@ struct ChooseBaseCurrencyView: View {
                     HStack {
                         CurrencyCell(country: country)
                             .onTapGesture {
+                                
                                 countryListVM.baseCountry = country
                                 countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
-                                print(countryListVM.baseCountry.flagCode)
                             }
                         Spacer()
                         if countryListVM.baseCountry.name == country.name {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 16, weight: .regular))
-                                .foregroundColor(Color("purple1"))
+                                .foregroundColor(Color.green)
                         }
                     }
 

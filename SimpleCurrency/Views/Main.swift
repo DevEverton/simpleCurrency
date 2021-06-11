@@ -27,8 +27,8 @@ struct Main: View {
                     isSheetPresented.toggle()
                     
                 }, label: {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 18, weight: .semibold))
+                    Image(systemName: "pencil")
+                        .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("purple1"))
                 })
             }

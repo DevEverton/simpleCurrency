@@ -12,8 +12,6 @@ struct BaseCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
     @State var isSheetPresented = false
     
-    
-    
     var body: some View {
         VStack {
             HStack {
@@ -53,6 +51,7 @@ struct BaseCurrencyView: View {
             //TODO: - Show all countries to choose the base country
             ChooseBaseCurrencyView(countryListVM: countryListVM)
         })
+
 
     }
 

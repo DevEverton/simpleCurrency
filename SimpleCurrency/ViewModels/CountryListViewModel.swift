@@ -11,9 +11,14 @@ import Foundation
 
 class CountryListViewModel: ObservableObject {
     
-    var countriesJsonUrl = URL(fileURLWithPath: "SavedCountries", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
+    private var countriesJsonUrl = URL(fileURLWithPath: "SavedCountries", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
+
             
-    @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US")
+    @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US") {
+        didSet {
+            saveBaseCountry()
+        }
+    }
     
     @Published var allCountries = [Country]()
     
@@ -40,6 +45,7 @@ class CountryListViewModel: ObservableObject {
     }
     
     init() {
+        loadBaseCurrency()
         getCurrencyList(from: baseCountry.currency.code)
         loadJSONCountryList()
     }
@@ -61,19 +67,48 @@ class CountryListViewModel: ObservableObject {
             print(error)
         }
     }
-    
+
     private func saveJSONCountryList() {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
-        
+
         do {
             let data = try encoder.encode(savedCountries)
             try data.write(to: countriesJsonUrl, options: .atomicWrite)
         } catch let error {
             print(error)
-            
+
         }
     }
+    
+    //MARK: - User Defaults local persistence
+    
+    private func saveBaseCountry() {
+        let encoder = JSONEncoder()
+
+        do {
+            let encodedBaseCountry = try encoder.encode(baseCountry)
+            UserDefaults.standard.set(encodedBaseCountry, forKey: "encodedBaseCountry")
+
+        } catch let error {
+            print(error)
+        }
+
+    }
+
+    private func loadBaseCurrency() {
+        let decoder = JSONDecoder()
+        do {
+            if let savedBaseCurrency = UserDefaults.standard.object(forKey: "encodedBaseCountry") as? Data {
+                let decodedBaseCountry = try decoder.decode(Country.self, from: savedBaseCurrency)
+                print("Decoded on load: \(decodedBaseCountry)")
+                baseCountry = decodedBaseCountry
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
 
     func getFlagCode(from name: String) -> String {
         Constants.countryCodes[name]!.1
