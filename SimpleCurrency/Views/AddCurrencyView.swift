@@ -16,15 +16,16 @@ struct AddCurrencyView: View {
         VStack(alignment: .leading) {
             Text("Add new")
                 .font(.system(size: 30, weight: .semibold, design: .rounded))
-                .padding(.leading, 10)  
+                .padding(.leading, 10)
                 .padding(.top)
-            SearchBar(searchText: $searchText)
+            SearchBar(searchText: $searchText, listType: .addCountry, countryListVM: countryListVM)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 10)
             List {
                 Section(header: Text("Selected Currencies")) {
                     ForEach(countryListVM.savedCountries) { country in
                         CurrencyCell(country: country)
+                            
                     }
                     .onDelete { indexSet in
                         countryListVM.addBackToAllCountries(countryListVM.savedCountries[indexSet.first!])

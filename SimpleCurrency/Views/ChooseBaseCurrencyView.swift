@@ -19,7 +19,7 @@ struct ChooseBaseCurrencyView: View {
                 .padding(.leading, 10)
                 .padding(.top)
             
-            SearchBar(searchText: $searchText)
+            SearchBar(searchText: $searchText, listType: .allCountries, countryListVM: countryListVM)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 10)
             List {

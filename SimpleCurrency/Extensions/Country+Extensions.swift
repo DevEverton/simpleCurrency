@@ -14,4 +14,8 @@ public extension FileManager {
   }
 }
 
-
+public extension String {
+    func lc() -> String {
+        self.lowercased()
+    }
+}

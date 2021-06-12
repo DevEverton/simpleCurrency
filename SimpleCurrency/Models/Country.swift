@@ -8,7 +8,11 @@
 import UIKit
 import Foundation
 
-struct Country: Identifiable, Codable{
+struct Country: Identifiable, Codable, Equatable {
+    static func == (lhs: Country, rhs: Country) -> Bool {
+        lhs.name == rhs.name
+    }
+    
 
     var id = UUID()
     var name: String

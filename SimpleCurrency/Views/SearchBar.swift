@@ -10,6 +10,9 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var searchText: String
     @State private var isEditing = false
+    var listType: CountryListType
+    @StateObject var countryListVM: CountryListViewModel
+
     
      
     var body: some View {
@@ -29,12 +32,14 @@ struct SearchBar: View {
                 .animation(.spring())
                 .font(.system(size: 16, weight: .regular, design: .rounded))
                 .onChange(of: searchText, perform: { value in
-                    if searchText.count > 20 {
+                    if searchText.count > 30 {
                         searchText = String(searchText.dropLast())
                     }
+                    countryListVM.search(searchText, listType: listType)
 
                 })
                 .autocapitalization(.none)
+                
 
             if isEditing {
                 Button(action: {
@@ -67,7 +72,7 @@ extension View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(searchText: .constant(""))
+        SearchBar(searchText: .constant(""), listType: .allCountries, countryListVM: CountryListViewModel())
             .previewLayout(.sizeThatFits)
             .padding(10)
             
