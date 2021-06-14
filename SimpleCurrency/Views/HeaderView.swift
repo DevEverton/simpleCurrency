@@ -20,8 +20,11 @@ struct HeaderView: View {
             Spacer()
             
             Button(action: {
-                //TODO: - Update the date value and call the API again
-                countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
+                countryListVM.getRequest = .loading
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
+
+                }
                 
             }, label: {
                 Image(systemName: "arrow.triangle.2.circlepath")

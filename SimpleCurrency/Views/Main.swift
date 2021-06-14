@@ -14,45 +14,40 @@ struct Main: View {
     @State var isSheetPresented = false
     
     var body: some View {
-        
-        if countryVM.getRequest != .sucess {
-            LoadingView()
-        } else {
-            VStack {
-                HeaderView(countryListVM: countryVM)
-                    .padding(.top, 10)
-                Divider()
-                BaseCurrencyView(countryListVM: countryVM)
-                Divider()
+        VStack {
+            HeaderView(countryListVM: countryVM)
+                .padding(.top, 10)
+            Divider()
+            BaseCurrencyView(countryListVM: countryVM)
+            Divider()
+            HStack {
+                Spacer()
+                Button(action: {
+                    isSheetPresented.toggle()
+                    
+                }, label: {
+                    Image(systemName: "pencil")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(Color("purple1"))
+                })
+            }
+            .padding([.trailing, .vertical], 10)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    Spacer()
-                    Button(action: {
-                        isSheetPresented.toggle()
-                        
-                    }, label: {
-                        Image(systemName: "pencil")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(Color("purple1"))
-                    })
-                }
-                .padding([.trailing, .vertical], 10)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(countryVM.savedCountries) { country in
-                            CardView(country: country)
-                                .padding(.top)
-                                .padding(.horizontal, 5)
-                        }
+                    ForEach(countryVM.savedCountries) { country in
+                        CardView(country: country)
+                            .padding(.top)
+                            .padding(.horizontal, 5)
                     }
                 }
-                Spacer()
             }
-            .padding(.horizontal, 10)
-            .sheet(isPresented: $isSheetPresented, content: {
-                AddCurrencyView(countryListVM: countryVM)
-            })
+            Spacer()
         }
+        .padding(.horizontal, 10)
+        .sheet(isPresented: $isSheetPresented, content: {
+            AddCurrencyView(countryListVM: countryVM)
+        })
         
         
         

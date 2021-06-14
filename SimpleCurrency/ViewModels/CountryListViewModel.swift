@@ -185,13 +185,12 @@ class CountryListViewModel: ObservableObject {
             case .allCountries:
                 allCountries = allCountries.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc()) }
             case .addCountry:
-                addCountryList = addCountryList.filter { $0.name.lc().contains(name.lc()) }
+                addCountryList = addCountryList.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc())  }
             }
         }
     }
         //MARK: - Get request
     func getCurrencyList(from base: String) {
-        getRequest = .loading
         guard let url = URL(string: "https://api.exchangerate.host/latest?base=\(base)") else { return }
         
         URLSession.shared.dataTask(with: url) {(data, response, error) in
