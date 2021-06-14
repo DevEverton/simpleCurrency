@@ -13,17 +13,17 @@ class CountryListViewModel: ObservableObject {
     
     private var countriesJsonUrl = URL(fileURLWithPath: "SavedCountries", relativeTo: FileManager.documentsDirectoryURL).appendingPathExtension("json")
     
+    @Published var isSearching = false
+    @Published var allCountries = [Country]()
+    @Published var addCountryList = [Country]()
+    @Published var getRequest: NetworkCall
     
     @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US") {
         didSet {
             saveBaseCountry()
         }
     }
-    @Published var isSearching = false
-    
-    @Published var allCountries = [Country]()
-    
-    @Published var addCountryList = [Country]()
+
     
     @Published var savedCountries = [Country]() {
         didSet {
@@ -46,6 +46,7 @@ class CountryListViewModel: ObservableObject {
     }
     
     init() {
+        getRequest = .loading
         loadBaseCurrency()
         getCurrencyList(from: baseCountry.currency.code)
         loadJSONCountryList()
@@ -182,7 +183,7 @@ class CountryListViewModel: ObservableObject {
         } else {
             switch listType {
             case .allCountries:
-                allCountries = allCountries.filter { $0.name.lc().contains(name.lc()) }
+                allCountries = allCountries.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc()) }
             case .addCountry:
                 addCountryList = addCountryList.filter { $0.name.lc().contains(name.lc()) }
             }
@@ -190,7 +191,7 @@ class CountryListViewModel: ObservableObject {
     }
         //MARK: - Get request
     func getCurrencyList(from base: String) {
-        
+        getRequest = .loading
         guard let url = URL(string: "https://api.exchangerate.host/latest?base=\(base)") else { return }
         
         URLSession.shared.dataTask(with: url) {(data, response, error) in
@@ -199,14 +200,21 @@ class CountryListViewModel: ObservableObject {
                     let decodedData = try JSONDecoder().decode(CurrencyReponse.self, from: data)
                     DispatchQueue.main.async { [self] in
                         self.rates = decodedData.rates
+                        getRequest = .sucess
                     }
                     
                 } else {
                     print("No data \(String(describing: error))")
+                    DispatchQueue.main.async {
+                        self.getRequest = .failure
+                    }
+
                 }
             } catch {
                 print("Error: \(error.localizedDescription)")
-                
+                DispatchQueue.main.async {
+                    self.getRequest = .failure
+                }
             }
         }
         .resume()
@@ -219,4 +227,10 @@ class CountryListViewModel: ObservableObject {
 enum CountryListType {
     case allCountries
     case addCountry
+}
+
+enum NetworkCall: String {
+    case loading = "Loading.."
+    case sucess = "Sucess!"
+    case failure = "Error"
 }

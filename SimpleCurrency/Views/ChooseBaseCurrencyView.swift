@@ -38,7 +38,6 @@ struct ChooseBaseCurrencyView: View {
                                 .foregroundColor(Color.green)
                         }
                     }
-
                     
                 }
                 .animation(.easeOut(duration: 0.5))

@@ -22,6 +22,7 @@
 		5071FAEA265922D000F19955 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE9265922CF00F19955 /* Country.swift */; };
 		5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAEC2659270E00F19955 /* CountryListViewModel.swift */; };
 		507DBEB82672897400E8596A /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 507DBEB72672897400E8596A /* SDWebImageSwiftUI */; };
+		507DBEBC26777BE000E8596A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507DBEBB26777BE000E8596A /* LoadingView.swift */; };
 		50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4E01265C82CB00CB8667 /* Constants.swift */; };
 		50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F32379265D208300CF7BEC /* Country+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,7 @@
 		5071FAE326591F7B00F19955 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		5071FAE9265922CF00F19955 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		5071FAEC2659270E00F19955 /* CountryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListViewModel.swift; sourceTree = "<group>"; };
+		507DBEBB26777BE000E8596A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		50AB4E01265C82CB00CB8667 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		50F32379265D208300CF7BEC /* Country+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 				5040E786266A65FB00847988 /* AddCurrencyView.swift */,
 				5040E790266E57F000847988 /* CurrencyCell.swift */,
 				5040E7922670E5F700847988 /* ChooseBaseCurrencyView.swift */,
+				507DBEBB26777BE000E8596A /* LoadingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				5040E77F26666F6500847988 /* HeaderView.swift in Sources */,
 				5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */,
 				5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */,
+				507DBEBC26777BE000E8596A /* LoadingView.swift in Sources */,
 				50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */,
 				5071FAEA265922D000F19955 /* Country.swift in Sources */,
 				5040E7832667046900847988 /* Main.swift in Sources */,

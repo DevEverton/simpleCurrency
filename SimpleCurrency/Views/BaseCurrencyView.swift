@@ -11,9 +11,22 @@ import SDWebImageSwiftUI
 struct BaseCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
     @State var isSheetPresented = false
+    let date = Date()
+
     
     var body: some View {
         VStack {
+            HStack(spacing: 2) {
+                Spacer()
+                Text("Updated:")
+                Text(date, style: .date)
+                Text(date, style: .time)
+            }
+            .font(.system(size: 12, weight: .light, design: .rounded))
+            .padding(.top, 5)
+            
+            Spacer()
+            
             HStack {
                 Spacer()
                 HStack(alignment: .bottom) {
@@ -44,6 +57,8 @@ struct BaseCurrencyView: View {
                     .font(.system(size: 55, weight: .regular, design: .rounded))
 
             }
+            Spacer()
+
         }
         .frame(maxWidth: .infinity)
         .frame(height: 250)
@@ -51,7 +66,6 @@ struct BaseCurrencyView: View {
             //TODO: - Show all countries to choose the base country
             ChooseBaseCurrencyView(countryListVM: countryListVM)
         })
-
 
     }
 

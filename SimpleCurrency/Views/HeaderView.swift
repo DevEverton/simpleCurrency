@@ -10,7 +10,6 @@ import SwiftUI
 struct HeaderView: View {
     @StateObject var countryListVM: CountryListViewModel
     
-    @State var lastUpdated = "01/01/2001"
     
     var body: some View {
         HStack(alignment: .bottom) {
@@ -19,8 +18,7 @@ struct HeaderView: View {
                 .foregroundColor(Color("title"))
 
             Spacer()
-            Text("Updated on \(lastUpdated)")
-                .font(.system(size: 12, weight: .light, design: .rounded))
+            
             Button(action: {
                 //TODO: - Update the date value and call the API again
                 countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
