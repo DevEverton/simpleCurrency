@@ -27,7 +27,6 @@ struct ChooseBaseCurrencyView: View {
                     HStack {
                         CurrencyCell(country: country)
                             .onTapGesture {
-                                
                                 countryListVM.baseCountry = country
                                 countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
                             }

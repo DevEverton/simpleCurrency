@@ -29,7 +29,7 @@ struct CardView: View {
                 HStack(alignment: .bottom) {
                     Spacer()
                     Text(String(format: "%.2f", country.currency.currentValue!))
-                        .font(.system(size: 48, weight: .regular, design: .rounded))
+                        .font(.system(size: 40, weight: .medium, design: .rounded))
                         .foregroundColor(.white)
                 }
 

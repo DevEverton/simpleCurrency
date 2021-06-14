@@ -29,7 +29,7 @@ struct BaseCurrencyView: View {
             }
             .font(.system(size: 12, weight: .light, design: .rounded))
             .padding(.top, 5)
-            .animation(.easeOut(duration: 0.5).delay(1.0))
+//            .animation(.easeOut(duration: 0.5).delay(1.0))
             
             Spacer()
             

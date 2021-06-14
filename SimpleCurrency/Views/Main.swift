@@ -10,8 +10,12 @@ import SwiftUI
 struct Main: View {
     
     @StateObject var countryVM = CountryListViewModel()
-    
     @State var isSheetPresented = false
+    
+    let rows = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
         VStack {
@@ -34,14 +38,15 @@ struct Main: View {
             .padding([.trailing, .vertical], 10)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
+                LazyHGrid(rows: rows, alignment: .top){
                     ForEach(countryVM.savedCountries) { country in
                         CardView(country: country)
-                            .padding(.top)
                             .padding(.horizontal, 5)
                     }
                 }
+                
             }
+            .frame(maxHeight: .infinity)
             Spacer()
         }
         .padding(.horizontal, 10)
