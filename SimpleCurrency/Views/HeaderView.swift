@@ -23,7 +23,6 @@ struct HeaderView: View {
                 countryListVM.getRequest = .loading
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
-
                 }
                 
             }, label: {

@@ -11,15 +11,16 @@ import SDWebImageSwiftUI
 struct BaseCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
     @State var isSheetPresented = false
+    @State var inputValue = "0.00"
+    
     let date = Date()
-
     
     var body: some View {
         VStack {
             
             HStack(spacing: 2) {
                 Spacer()
-                if countryListVM.getRequest == .loading {
+                if countryListVM.getRequest != .success {
                     ProgressView()
                 } else {
                     Text("Updated:")
@@ -29,7 +30,6 @@ struct BaseCurrencyView: View {
             }
             .font(.system(size: 12, weight: .light, design: .rounded))
             .padding(.top, 5)
-//            .animation(.easeOut(duration: 0.5).delay(1.0))
             
             Spacer()
             
@@ -46,7 +46,6 @@ struct BaseCurrencyView: View {
                 }
 
                 Button(action: {
-                    //TODO: - Call modal view with all countries
                     isSheetPresented.toggle()
 
                 }, label: {
@@ -59,8 +58,17 @@ struct BaseCurrencyView: View {
             .padding(10)
             HStack(alignment: .bottom) {
                 Spacer()
-                Text(String(format: "%.2f", countryListVM.baseCountry.currency.currentValue!))
+             
+                TextField("", text: $inputValue)
                     .font(.system(size: 55, weight: .regular, design: .rounded))
+                    .multilineTextAlignment(.trailing)
+                    .onChange(of: inputValue, perform: { value in
+                        if inputValue.isEmpty {
+                            inputValue = "0.0"
+                        }
+                        countryListVM.multiplier = Double(value) ?? 0.0
+                    })
+                    .keyboardType(.numberPad)
 
             }
             Spacer()

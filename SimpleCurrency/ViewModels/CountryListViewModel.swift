@@ -16,7 +16,8 @@ class CountryListViewModel: ObservableObject {
     @Published var isSearching = false
     @Published var allCountries = [Country]()
     @Published var addCountryList = [Country]()
-    @Published var getRequest: NetworkCall
+    @Published var getRequest: NetworkStatus
+    @Published var multiplier: Double = 0.0
     
     @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US") {
         didSet {
@@ -41,7 +42,6 @@ class CountryListViewModel: ObservableObject {
             removeSavedCountries()
             sortAddCountryList()
             updateValuesFor(savedCountries)
-            
         }
     }
     
@@ -189,7 +189,10 @@ class CountryListViewModel: ObservableObject {
             }
         }
     }
-        //MARK: - Get request
+    
+
+    //MARK: - Get request
+    
     func getCurrencyList(from base: String) {
         guard let url = URL(string: "https://api.exchangerate.host/latest?base=\(base)") else { return }
         
@@ -199,7 +202,7 @@ class CountryListViewModel: ObservableObject {
                     let decodedData = try JSONDecoder().decode(CurrencyReponse.self, from: data)
                     DispatchQueue.main.async { [self] in
                         self.rates = decodedData.rates
-                        getRequest = .sucess
+                        getRequest = .success
                     }
                     
                 } else {
@@ -228,8 +231,8 @@ enum CountryListType {
     case addCountry
 }
 
-enum NetworkCall: String {
-    case loading = "Loading.."
-    case sucess = "Sucess!"
+enum NetworkStatus: String {
+    case loading = "Loading"
+    case success = "Success!"
     case failure = "Error"
 }

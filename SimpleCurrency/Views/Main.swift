@@ -40,7 +40,7 @@ struct Main: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: rows, alignment: .top){
                     ForEach(countryVM.savedCountries) { country in
-                        CardView(country: country)
+                        CardView(country: country, multiplier: countryVM.multiplier)
                             .padding(.horizontal, 5)
                     }
                 }

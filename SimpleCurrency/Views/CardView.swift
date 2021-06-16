@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct CardView: View {
     
     let country: Country
+    var multiplier: Double
 
     var body: some View {
         
@@ -28,7 +29,7 @@ struct CardView: View {
                 }
                 HStack(alignment: .bottom) {
                     Spacer()
-                    Text(String(format: "%.2f", country.currency.currentValue!))
+                    Text(String(format: "%.2f", country.currency.currentValue! * multiplier))
                         .font(.system(size: 40, weight: .medium, design: .rounded))
                         .foregroundColor(.white)
                 }
@@ -51,7 +52,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(country: Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US"))
+        CardView(country: Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US"), multiplier: 1.0)
         
     }
 }
