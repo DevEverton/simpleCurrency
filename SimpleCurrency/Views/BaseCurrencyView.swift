@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct BaseCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
     @State var isSheetPresented = false
-    @State var inputValue = "0.00"
+    @State var inputValue = 0.0
     
     let date = Date()
     
@@ -58,17 +58,20 @@ struct BaseCurrencyView: View {
             .padding(10)
             HStack(alignment: .bottom) {
                 Spacer()
-             
-                TextField("", text: $inputValue)
-                    .font(.system(size: 55, weight: .regular, design: .rounded))
-                    .multilineTextAlignment(.trailing)
-                    .onChange(of: inputValue, perform: { value in
-                        if inputValue.isEmpty {
-                            inputValue = "0.0"
+                TextField(
+                     "0.00",
+                      value: $inputValue,
+                    formatter: formatter(code: countryListVM.baseCountry.currency.code),
+                      onCommit: {
+                        if inputValue.isNaN {
+                            print("NAN")
                         }
-                        countryListVM.multiplier = Double(value) ?? 0.0
+                      })
+                    .onChange(of: inputValue, perform: { value in
+                        countryListVM.multiplier = value
                     })
-                    .keyboardType(.numberPad)
+                    .multilineTextAlignment(.trailing)
+                    .font(.system(size: 55, weight: .regular, design: .rounded))
 
             }
             Spacer()
@@ -77,12 +80,18 @@ struct BaseCurrencyView: View {
         .frame(maxWidth: .infinity)
         .frame(height: 250)
         .sheet(isPresented: $isSheetPresented, content: {
-            //TODO: - Show all countries to choose the base country
             ChooseBaseCurrencyView(countryListVM: countryListVM)
         })
 
     }
-
+    
+    private func formatter(code: String) -> NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(currencyCode: code)
+        return formatter
+    }
+    
 }
 
 struct BaseCurrencyView_Previews: PreviewProvider {
@@ -90,4 +99,15 @@ struct BaseCurrencyView_Previews: PreviewProvider {
         BaseCurrencyView(countryListVM: CountryListViewModel())
 
     }
+}
+
+extension Locale: CaseIterable {
+    public static let allCases: [Locale] = availableIdentifiers.map(Locale.init(identifier:))
+}
+
+public extension Locale {
+    init?(currencyCode: String) {
+        guard let locale = Self.allCases.first(where: { $0.currencyCode == currencyCode }) else { return nil }
+        self = locale
+     }
 }

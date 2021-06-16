@@ -53,10 +53,9 @@ struct Main: View {
         .sheet(isPresented: $isSheetPresented, content: {
             AddCurrencyView(countryListVM: countryVM)
         })
-        
-        
-        
+ 
     }
+    
 }
 
 struct Main_Previews: PreviewProvider {
