@@ -27,11 +27,15 @@ struct CardView: View {
                         .frame(width: 32, height: 32)
 
                 }
+                .padding(.top, 5)
                 HStack(alignment: .bottom) {
                     Spacer()
-                    Text(String(format: "%.2f", country.currency.currentValue! * multiplier))
-                        .font(.system(size: 40, weight: .medium, design: .rounded))
+                    Text(String(country.currency.currentValue! * multiplier).toCurrencyFormat(code: country.currency.code))
+                        .font(.largeTitle)
                         .foregroundColor(.white)
+                        .truncationMode(.tail)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                 }
 
             }
@@ -48,6 +52,7 @@ struct CardView: View {
         
 
     }
+    
 }
 
 struct CardView_Previews: PreviewProvider {
@@ -56,3 +61,4 @@ struct CardView_Previews: PreviewProvider {
         
     }
 }
+

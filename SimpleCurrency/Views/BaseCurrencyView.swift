@@ -11,13 +11,13 @@ import SDWebImageSwiftUI
 struct BaseCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
     @State var isSheetPresented = false
-    @State var inputValue = 0.0
+    @State var inputValue: Double? = 0.0
+    @State var isEditing = false
     
     let date = Date()
     
     var body: some View {
-        VStack {
-            
+         VStack {
             HStack(spacing: 2) {
                 Spacer()
                 if countryListVM.getRequest != .success {
@@ -56,23 +56,37 @@ struct BaseCurrencyView: View {
                 
             }
             .padding(10)
-            HStack(alignment: .bottom) {
-                Spacer()
-                TextField(
-                     "0.00",
-                      value: $inputValue,
-                    formatter: formatter(code: countryListVM.baseCountry.currency.code),
-                      onCommit: {
-                        if inputValue.isNaN {
-                            print("NAN")
-                        }
-                      })
-                    .onChange(of: inputValue, perform: { value in
+            HStack(alignment: .center) {
+                if isEditing {
+                    Button(action: {
+                        self.isEditing = false
+                        dismissKeyboard()
+     
+                    }) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 18, weight: .regular))
+                            .accentColor(Color("purple2"))
+
+                    }
+                    .padding(.trailing, 10)
+                    .transition(.move(edge: .leading))
+                    .animation(.default)
+                    
+                }
+                
+                CurrencyTextField("", value: $inputValue, alwaysShowFractions: false, numberOfDecimalPlaces: 2, currencySymbol: "$")
+                    .font(.largeTitle)
+                    .truncationMode(.tail)
+                    .minimumScaleFactor(0.5)
+                    .multilineTextAlignment(.trailing)
+                    .lineLimit(1)
+                    .onChange(of: inputValue ?? 0.0, perform: { value in
                         countryListVM.multiplier = value
                     })
-                    .multilineTextAlignment(.trailing)
-                    .font(.system(size: 55, weight: .regular, design: .rounded))
+                    .onTapGesture {
+                        self.isEditing = true
 
+                    }
             }
             Spacer()
 
@@ -101,13 +115,3 @@ struct BaseCurrencyView_Previews: PreviewProvider {
     }
 }
 
-extension Locale: CaseIterable {
-    public static let allCases: [Locale] = availableIdentifiers.map(Locale.init(identifier:))
-}
-
-public extension Locale {
-    init?(currencyCode: String) {
-        guard let locale = Self.allCases.first(where: { $0.currencyCode == currencyCode }) else { return nil }
-        self = locale
-     }
-}
