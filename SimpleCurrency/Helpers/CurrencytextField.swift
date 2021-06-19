@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 
 public struct CurrencyTextField: UIViewRepresentable {
-    
+        
     @Binding var value: Double?
     private var isResponder: Binding<Bool>?
     private var tag: Int

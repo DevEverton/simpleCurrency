@@ -31,29 +31,43 @@ struct Main: View {
                     
                 }, label: {
                     Image(systemName: "pencil")
-                        .font(.system(size: 20, weight: .bold))
+                        .font(.system(size: 20, weight: .black))
                         .foregroundColor(Color("purple1"))
                 })
             }
-            .padding([.trailing, .vertical], 10)
+            .padding([.trailing, .top], 10)
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHGrid(rows: rows, alignment: .top){
-                    ForEach(countryVM.savedCountries) { country in
-                        CardView(country: country, multiplier: countryVM.multiplier)
-                            .padding(.horizontal, 5)
+            if countryVM.savedCountries.isEmpty {
+                EmptyListView(isTapped: $isSheetPresented)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 320)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: rows, alignment: .top){
+                        ForEach(countryVM.savedCountries) { country in
+                            CardView(country: country, multiplier: countryVM.multiplier)
+                                .padding(.horizontal, 5)
+                        }
                     }
+                    .frame(maxHeight: 320)
+                    .simultaneousGesture(DragGesture().onChanged({ _ in
+                        dismissKeyboard()
+                    }))
                 }
-                
+                .frame(maxHeight: .infinity)
+                Spacer()
             }
-            .frame(maxHeight: .infinity)
             Spacer()
+
         }
         .padding(.horizontal, 10)
         .sheet(isPresented: $isSheetPresented, content: {
             AddCurrencyView(countryListVM: countryVM)
         })
         .edgesIgnoringSafeArea(.bottom)
+        .onTapGesture {
+           dismissKeyboard()
+        }
  
     }
     

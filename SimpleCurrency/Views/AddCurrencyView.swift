@@ -14,7 +14,7 @@ struct AddCurrencyView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Add new")
+            Text("Edit")
                 .font(.system(size: 30, weight: .semibold, design: .rounded))
                 .padding(.leading, 10)
                 .padding(.top)

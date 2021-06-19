@@ -12,7 +12,6 @@ struct BaseCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
     @State var isSheetPresented = false
     @State var inputValue: Double? = 0.0
-    @State var isEditing = false
     
     let date = Date()
     
@@ -57,24 +56,7 @@ struct BaseCurrencyView: View {
             }
             .padding(10)
             HStack(alignment: .center) {
-                if isEditing {
-                    Button(action: {
-                        self.isEditing = false
-                        dismissKeyboard()
-     
-                    }) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 18, weight: .regular))
-                            .accentColor(Color("purple2"))
-
-                    }
-                    .padding(.trailing, 10)
-                    .transition(.move(edge: .leading))
-                    .animation(.default)
-                    
-                }
-                
-                CurrencyTextField("", value: $inputValue, alwaysShowFractions: false, numberOfDecimalPlaces: 2, currencySymbol: "$")
+                CurrencyTextField("", value: $inputValue, alwaysShowFractions: false, numberOfDecimalPlaces: 2, currencySymbol: "")
                     .font(.largeTitle)
                     .truncationMode(.tail)
                     .minimumScaleFactor(0.5)
@@ -84,9 +66,11 @@ struct BaseCurrencyView: View {
                         countryListVM.multiplier = value
                     })
                     .onTapGesture {
-                        self.isEditing = true
-
+                        inputValue = 0.0
+                        countryListVM.multiplier = 0.0
                     }
+                Text(countryListVM.currencySymbol)
+                    .font(.title)
             }
             Spacer()
 
@@ -96,15 +80,9 @@ struct BaseCurrencyView: View {
         .sheet(isPresented: $isSheetPresented, content: {
             ChooseBaseCurrencyView(countryListVM: countryListVM)
         })
-
     }
     
-    private func formatter(code: String) -> NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(currencyCode: code)
-        return formatter
-    }
+    
     
 }
 

@@ -18,10 +18,12 @@ class CountryListViewModel: ObservableObject {
     @Published var addCountryList = [Country]()
     @Published var getRequest: NetworkStatus
     @Published var multiplier: Double = 0.0
+    @Published var currencySymbol = "$" 
     
     @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US") {
         didSet {
             saveBaseCountry()
+            getCurrencySymbol(from: baseCountry.currency.code)
         }
     }
 
@@ -188,6 +190,13 @@ class CountryListViewModel: ObservableObject {
                 addCountryList = addCountryList.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc())  }
             }
         }
+    }
+    
+    private func getCurrencySymbol(from code: String) {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(currencyCode: code)
+        currencySymbol = formatter.currencySymbol
     }
     
 

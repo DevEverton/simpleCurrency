@@ -15,6 +15,7 @@
 		5040E78F266E485000847988 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E78E266E485000847988 /* SearchBar.swift */; };
 		5040E791266E57F000847988 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E790266E57F000847988 /* CurrencyCell.swift */; };
 		5040E7932670E5F700847988 /* ChooseBaseCurrencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5040E7922670E5F700847988 /* ChooseBaseCurrencyView.swift */; };
+		505FCBB2267E26190041C908 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505FCBB1267E26190041C908 /* EmptyListView.swift */; };
 		5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */; };
 		5071FAD426591A3B00F19955 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5071FAD326591A3B00F19955 /* Assets.xcassets */; };
 		5071FAD726591A3B00F19955 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5071FAD626591A3B00F19955 /* Preview Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		5040E78E266E485000847988 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		5040E790266E57F000847988 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		5040E7922670E5F700847988 /* ChooseBaseCurrencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseBaseCurrencyView.swift; sourceTree = "<group>"; };
+		505FCBB1267E26190041C908 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		5071FACC26591A3700F19955 /* SimpleCurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5071FACF26591A3700F19955 /* SimpleCurrencyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCurrencyApp.swift; sourceTree = "<group>"; };
 		5071FAD326591A3B00F19955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				5040E786266A65FB00847988 /* AddCurrencyView.swift */,
 				5040E790266E57F000847988 /* CurrencyCell.swift */,
 				5040E7922670E5F700847988 /* ChooseBaseCurrencyView.swift */,
+				505FCBB1267E26190041C908 /* EmptyListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				5040E7852669553500847988 /* CardView.swift in Sources */,
 				5040E791266E57F000847988 /* CurrencyCell.swift in Sources */,
 				5040E787266A65FB00847988 /* AddCurrencyView.swift in Sources */,
+				505FCBB2267E26190041C908 /* EmptyListView.swift in Sources */,
 				50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */,
 				5040E77F26666F6500847988 /* HeaderView.swift in Sources */,
 				509BBB79267BD43C0024E8E2 /* CurrencytextField.swift in Sources */,

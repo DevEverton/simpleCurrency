@@ -35,15 +35,15 @@ public extension Locale {
 extension String {
     func toCurrencyFormat(code: String) -> String {
         if let doubleValue = Double(self){
-           let formatter = NumberFormatter()
+            let formatter = NumberFormatter()
             formatter.numberStyle = .currency
             formatter.locale = Locale(currencyCode: code)
-           return formatter.string(from: NSNumber(value: doubleValue)) ?? ""
-      }
-    return ""
-  }
+            return formatter.string(from: NSNumber(value: doubleValue)) ?? ""
+        }
+        return ""
+    }
+    
 }
-
 
 #if canImport(UIKit)
 extension View {

@@ -12,6 +12,8 @@ struct ChooseBaseCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
     @State var searchText = ""
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("All Currencies")
@@ -29,6 +31,8 @@ struct ChooseBaseCurrencyView: View {
                             .onTapGesture {
                                 countryListVM.baseCountry = country
                                 countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
+                                countryListVM.multiplier = 0.0
+                                presentationMode.wrappedValue.dismiss()
                             }
                         Spacer()
                         if countryListVM.baseCountry.name == country.name {
