@@ -42,7 +42,7 @@ struct CardView: View {
             .padding(.horizontal, 10)
             
         }
-        .frame(width: 250, height: 150)
+        .frame(width: 250, height: 130)
         .background(
             LinearGradient(gradient: Gradient(colors: [Color("purple1"), Color("purple2")]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .opacity(0.8)
