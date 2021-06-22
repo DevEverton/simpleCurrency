@@ -44,6 +44,10 @@ class CountryListViewModel: ObservableObject {
             removeSavedCountries()
             sortAddCountryList()
             updateValuesFor(savedCountries)
+            print("RATES: \(rates)")
+            print("SAVED COUNTRIES: \(savedCountries)")
+
+
         }
     }
     
@@ -204,12 +208,15 @@ class CountryListViewModel: ObservableObject {
     
     func getCurrencyList(from base: String) {
         guard let url = URL(string: "https://api.exchangerate.host/latest?base=\(base)") else { return }
+        let session = URLSession(configuration: .default)
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 15.0)
         
-        URLSession.shared.dataTask(with: url) {(data, response, error) in
+        let task = session.dataTask(with: request) {(data, response, error) in
             do {
                 if let data = data {
                     let decodedData = try JSONDecoder().decode(CurrencyReponse.self, from: data)
                     DispatchQueue.main.async { [self] in
+                        print("Decoded data \(decodedData)")
                         self.rates = decodedData.rates
                         getRequest = .success
                     }
@@ -228,7 +235,7 @@ class CountryListViewModel: ObservableObject {
                 }
             }
         }
-        .resume()
+        task.resume()
         
     }
         
