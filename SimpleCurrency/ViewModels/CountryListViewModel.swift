@@ -37,17 +37,7 @@ class CountryListViewModel: ObservableObject {
     private var rates = [String:Double]()
     {
         didSet {
-            print("Rates updated!")
-            addCountryList = buildCountriesList()
-            allCountries = buildCountriesList()
-            sortAllCountries()
-            removeSavedCountries()
-            sortAddCountryList()
-            updateValuesFor(savedCountries)
-            print("RATES: \(rates)")
-            print("SAVED COUNTRIES: \(savedCountries)")
-
-
+            updateAndSortData()
         }
     }
     
@@ -56,6 +46,15 @@ class CountryListViewModel: ObservableObject {
         loadBaseCurrency()
         getCurrencyList(from: baseCountry.currency.code)
         loadJSONCountryList()
+    }
+    
+    func updateAndSortData() {
+        addCountryList = buildCountriesList()
+        allCountries = buildCountriesList()
+        sortAllCountries()
+        removeSavedCountries()
+        sortAddCountryList()
+        updateValuesFor(savedCountries)
     }
     
     //MARK: - JSON local persistence
@@ -176,8 +175,8 @@ class CountryListViewModel: ObservableObject {
     func buildCountriesList() -> [Country] {
         Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0)), flagCode: $0.value.1) }
     }
-    
-    func search(_ name: String, listType: CountryListType) {
+
+    func search(_ name: String, listType: CountryListType) -> [Country] {
         
         isSearching = true
         
@@ -186,12 +185,19 @@ class CountryListViewModel: ObservableObject {
             loadBaseCurrency()
             getCurrencyList(from: baseCountry.currency.code)
             loadJSONCountryList()
+            switch listType {
+            case .allCountries:
+                return allCountries
+            case .addCountry:
+                return addCountryList
+            }
         } else {
             switch listType {
             case .allCountries:
-                allCountries = allCountries.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc()) }
+                return allCountries.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc()) }
+                
             case .addCountry:
-                addCountryList = addCountryList.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc())  }
+                return addCountryList.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc())  }
             }
         }
     }
@@ -216,7 +222,6 @@ class CountryListViewModel: ObservableObject {
                 if let data = data {
                     let decodedData = try JSONDecoder().decode(CurrencyReponse.self, from: data)
                     DispatchQueue.main.async { [self] in
-                        print("Decoded data \(decodedData)")
                         self.rates = decodedData.rates
                         getRequest = .success
                     }

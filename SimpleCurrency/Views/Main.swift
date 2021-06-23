@@ -11,11 +11,11 @@ struct Main: View {
     
     @StateObject var countryVM = CountryListViewModel()
     @State var isSheetPresented = false
-
+    @State var filteredList = [Country]()
     
     var body: some View {
         TabView {
-            ConverterView(countryVM: countryVM, isSheetPresented: $isSheetPresented)
+            ConverterView(countryVM: countryVM, isSheetPresented: $isSheetPresented, filteredList: filteredList)
                 .tabItem {
                     Label("Converter", systemImage: "dollarsign.circle")
                         .background(Color.green)
@@ -26,7 +26,6 @@ struct Main: View {
                     Label("Settings", systemImage: "gear")
 
                 }
-
         }
         .accentColor(Color("purple2"))
  
@@ -36,6 +35,11 @@ struct Main: View {
 
 struct Main_Previews: PreviewProvider {
     static var previews: some View {
-        Main()
+//        Main()
+        ForEach(["iPhone 12 Pro", "iPhone 8"], id: \.self) { deviceName in
+             Main()
+                 .previewDevice(PreviewDevice(rawValue: deviceName))
+
+         }
     }
 }

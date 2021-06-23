@@ -11,8 +11,11 @@ struct ChooseBaseCurrencyView: View {
     
     @StateObject var countryListVM: CountryListViewModel
     @State var searchText = ""
+    @State var filteredList = [Country]()
+
     
     @Environment(\.presentationMode) var presentationMode
+
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,11 +24,11 @@ struct ChooseBaseCurrencyView: View {
                 .padding(.leading, 10)
                 .padding(.top)
             
-            SearchBar(searchText: $searchText, listType: .allCountries, countryListVM: countryListVM)
+            SearchBar(searchText: $searchText, listType: .allCountries, countryListVM: countryListVM, filteredList: $filteredList)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 10)
             List {
-                ForEach(countryListVM.allCountries) { country in
+                ForEach(filteredList) { country in
                     HStack {
                         CurrencyCell(country: country)
                             .onTapGesture {
@@ -44,12 +47,17 @@ struct ChooseBaseCurrencyView: View {
                     
                 }
                 .animation(.easeOut(duration: 0.5))
+                .onReceive(countryListVM.$allCountries, perform: { _ in
+                    filteredList = countryListVM.allCountries.sorted(by: { $0.name < $1.name })
+
+                })
             }
             .listStyle(InsetGroupedListStyle())
+ 
 
-
-            
         }
+
+        
         
     }
 }

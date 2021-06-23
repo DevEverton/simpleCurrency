@@ -12,8 +12,7 @@ struct SearchBar: View {
     @State private var isEditing = false
     var listType: CountryListType
     @StateObject var countryListVM: CountryListViewModel
-
-    
+    @Binding var filteredList: [Country]
      
     var body: some View {
         HStack(spacing: 0.0) {
@@ -35,7 +34,7 @@ struct SearchBar: View {
                     if searchText.count > 30 {
                         searchText = String(searchText.dropLast())
                     }
-                    countryListVM.search(searchText, listType: listType)
+                    filteredList = countryListVM.search(searchText, listType: listType)
 
                 })
                 .autocapitalization(.none)
@@ -65,7 +64,7 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(searchText: .constant(""), listType: .allCountries, countryListVM: CountryListViewModel())
+        SearchBar(searchText: .constant(""), listType: .allCountries, countryListVM: CountryListViewModel(), filteredList: .constant(.init()))
             .previewLayout(.sizeThatFits)
             .padding(10)
             

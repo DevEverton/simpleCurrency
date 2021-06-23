@@ -10,6 +10,7 @@ import SwiftUI
 struct ConverterView: View {
     @StateObject var countryVM: CountryListViewModel
     @Binding var isSheetPresented: Bool
+    @State var filteredList = [Country]()
     
     let rows = [
         GridItem(.fixed(150)),
@@ -35,27 +36,27 @@ struct ConverterView: View {
                 })
             }
             .padding([.trailing, .top], 10)
+            .padding(.bottom, 5)
             
             if countryVM.savedCountries.isEmpty {
                 EmptyListView(isTapped: $isSheetPresented)
                     .frame(maxWidth: .infinity)
                     .frame(height: 320)
             } else {
-                
                 GeometryReader { geometry in
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: rows, alignment: .top){
                             ForEach(countryVM.savedCountries) { country in
                                 CardView(country: country, multiplier: countryVM.multiplier)
-                                    .padding(.horizontal, 5)
+                                    .padding(5)
                             }
                         }
-                        .frame(maxHeight: geometry.size.height - 50.0)
+                        .frame(maxHeight: geometry.size.height - 30)
                         .simultaneousGesture(DragGesture().onChanged({ _ in
                             dismissKeyboard()
                         }))
                     }
-                    .frame(maxHeight: .infinity)
+                    .frame(maxHeight: geometry.size.height - 30)
                 }
 
                 Spacer()
@@ -65,7 +66,7 @@ struct ConverterView: View {
         }
         .padding(.horizontal, 10)
         .sheet(isPresented: $isSheetPresented, content: {
-            AddCurrencyView(countryListVM: countryVM)
+            AddCurrencyView(countryListVM: countryVM, filteredList: filteredList)
         })
         .onTapGesture {
            dismissKeyboard()
@@ -79,6 +80,6 @@ struct ConverterView: View {
 
 struct ConverterView_Previews: PreviewProvider {
     static var previews: some View {
-        ConverterView(countryVM: CountryListViewModel(), isSheetPresented: .constant(false))
+        ConverterView(countryVM: CountryListViewModel(), isSheetPresented: .constant(false), filteredList: [])
     }
 }

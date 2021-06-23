@@ -11,6 +11,7 @@ struct AddCurrencyView: View {
     
     @StateObject var countryListVM: CountryListViewModel
     @State var searchText = ""
+    @State var filteredList = [Country]()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,7 +19,7 @@ struct AddCurrencyView: View {
                 .font(.system(size: 30, weight: .semibold, design: .rounded))
                 .padding(.leading, 10)
                 .padding(.top)
-            SearchBar(searchText: $searchText, listType: .addCountry, countryListVM: countryListVM)
+            SearchBar(searchText: $searchText, listType: .addCountry, countryListVM: countryListVM, filteredList: $filteredList)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 10)
             List {
@@ -33,10 +34,14 @@ struct AddCurrencyView: View {
                         countryListVM.savedCountries.remove(atOffsets: indexSet)
                     }
                     .animation(.linear(duration: 0.3))
+                    .onReceive(countryListVM.$addCountryList, perform: { _ in
+                        filteredList = countryListVM.addCountryList.sorted(by: { $0.name < $1.name })
+
+                    })
                 }
                 
                 Section(header: Text("All Currencies")) {
-                    ForEach(countryListVM.addCountryList) { country in
+                    ForEach(filteredList) { country in
                         CurrencyCell(country: country)
                             .onTapGesture {
                                 countryListVM.addCountry(country: country)
@@ -58,6 +63,6 @@ struct AddCurrencyView: View {
 
 struct AddCurrencyView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCurrencyView(countryListVM: CountryListViewModel())
+        AddCurrencyView(countryListVM: CountryListViewModel(), filteredList: [])
     }
 }
