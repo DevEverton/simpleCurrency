@@ -13,14 +13,14 @@ struct ConverterView: View {
     @State var filteredList = [Country]()
     
     let rows = [
-        GridItem(.fixed(150)),
-        GridItem(.fixed(150))
+        GridItem(.flexible(minimum: 120, maximum: 145)),
+        GridItem(.flexible(minimum: 120, maximum: 145))
     ]
     
     var body: some View {
         VStack {
             HeaderView(countryListVM: countryVM)
-                .padding(.top, 10)
+                .padding(.top, 5)
             Divider()
             BaseCurrencyView(countryListVM: countryVM)
             Divider()
@@ -55,8 +55,10 @@ struct ConverterView: View {
                         .simultaneousGesture(DragGesture().onChanged({ _ in
                             dismissKeyboard()
                         }))
+                        .aspectRatio(contentMode: .fill)
+
                     }
-                    .frame(maxHeight: geometry.size.height - 30)
+                    .frame(maxHeight: geometry.size.height - 50)
                 }
 
                 Spacer()
@@ -64,7 +66,6 @@ struct ConverterView: View {
             Spacer()
 
         }
-        .padding(.horizontal, 10)
         .sheet(isPresented: $isSheetPresented, content: {
             AddCurrencyView(countryListVM: countryVM, filteredList: filteredList)
         })
@@ -80,6 +81,11 @@ struct ConverterView: View {
 
 struct ConverterView_Previews: PreviewProvider {
     static var previews: some View {
-        ConverterView(countryVM: CountryListViewModel(), isSheetPresented: .constant(false), filteredList: [])
+        ForEach(["iPhone 12 Pro", "iPhone 8"], id: \.self) { deviceName in
+            ConverterView(countryVM: CountryListViewModel(), isSheetPresented: .constant(false), filteredList: [])
+                 .previewDevice(PreviewDevice(rawValue: deviceName))
+
+         }
+
     }
 }

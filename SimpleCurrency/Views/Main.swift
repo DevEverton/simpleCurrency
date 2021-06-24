@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct Main: View {
+    enum Tab {
+        case converter
+        case settings
+    }
     
     @StateObject var countryVM = CountryListViewModel()
     @State var isSheetPresented = false
@@ -20,12 +24,14 @@ struct Main: View {
                     Label("Converter", systemImage: "dollarsign.circle")
                         .background(Color.green)
                 }
+                .tag(Tab.converter)
             
             Text("Settings")
                 .tabItem {
                     Label("Settings", systemImage: "gear")
 
                 }
+                .tag(Tab.settings)
         }
         .accentColor(Color("purple2"))
  

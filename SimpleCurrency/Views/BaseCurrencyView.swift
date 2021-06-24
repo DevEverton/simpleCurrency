@@ -76,7 +76,7 @@ struct BaseCurrencyView: View {
 
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 230)
+        .frame(height: 200)
         .sheet(isPresented: $isSheetPresented, content: {
             ChooseBaseCurrencyView(countryListVM: countryListVM)
         })

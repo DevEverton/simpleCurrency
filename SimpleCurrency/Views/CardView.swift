@@ -48,7 +48,7 @@ struct CardView: View {
             LinearGradient(gradient: Gradient(colors: [Color("purple1"), Color("purple2")]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .opacity(0.8)
         )
-        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: .gray.opacity(0.2), radius: 8, x: 10, y: 10)
 
     }
