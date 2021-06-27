@@ -9,14 +9,17 @@ import Foundation
 import Combine
 
 struct UserSettings: Codable {
+    
     var prefersNotifications: Bool
     var listOrientation: ListOrientation
-    var goalDate = Date()
+    static let `default` = UserSettings(prefersNotifications: false, listOrientation: .horizontal)
 
-    static let `default` = UserSettings(prefersNotifications: true, listOrientation: .horizontal)
-
-    enum ListOrientation {
-        case horizontal, vertical
+    enum ListOrientation: String, Codable {
+        case horizontal = "horizontal"
+        case vertical = "vertical"
     }
+
 }
+
+
 

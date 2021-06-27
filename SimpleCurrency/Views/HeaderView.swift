@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HeaderView: View {
     @StateObject var countryListVM: CountryListViewModel
-    
+
     
     var body: some View {
         HStack(alignment: .bottom) {

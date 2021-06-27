@@ -28,6 +28,7 @@
 		50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4E01265C82CB00CB8667 /* Constants.swift */; };
 		50E26C6E26876E5200F60394 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E26C6D26876E5200F60394 /* UserSettings.swift */; };
 		50E26C702687762900F60394 /* UserSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E26C6F2687762800F60394 /* UserSettingsStore.swift */; };
+		50E26C7226891ECF00F60394 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E26C7126891ECF00F60394 /* SettingsView.swift */; };
 		50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F32379265D208300CF7BEC /* Country+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		50AB4E01265C82CB00CB8667 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		50E26C6D26876E5200F60394 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		50E26C6F2687762800F60394 /* UserSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsStore.swift; sourceTree = "<group>"; };
+		50E26C7126891ECF00F60394 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		50F32379265D208300CF7BEC /* Country+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 				5040E790266E57F000847988 /* CurrencyCell.swift */,
 				5040E7922670E5F700847988 /* ChooseBaseCurrencyView.swift */,
 				505FCBB1267E26190041C908 /* EmptyListView.swift */,
+				50E26C7126891ECF00F60394 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				5040E791266E57F000847988 /* CurrencyCell.swift in Sources */,
 				5040E787266A65FB00847988 /* AddCurrencyView.swift in Sources */,
 				505FCBB2267E26190041C908 /* EmptyListView.swift in Sources */,
+				50E26C7226891ECF00F60394 /* SettingsView.swift in Sources */,
 				50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */,
 				5040E77F26666F6500847988 /* HeaderView.swift in Sources */,
 				509BBB79267BD43C0024E8E2 /* CurrencytextField.swift in Sources */,

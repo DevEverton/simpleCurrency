@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Main: View {
+    
     enum Tab {
         case converter
         case settings
@@ -16,7 +17,7 @@ struct Main: View {
     @StateObject var countryVM = CountryListViewModel()
     @State var isSheetPresented = false
     @State var filteredList = [Country]()
-    
+        
     var body: some View {
         TabView {
             ConverterView(countryVM: countryVM, isSheetPresented: $isSheetPresented, filteredList: filteredList)
@@ -34,6 +35,7 @@ struct Main: View {
                 .tag(Tab.settings)
         }
         .accentColor(Color("purple2"))
+
  
     }
     

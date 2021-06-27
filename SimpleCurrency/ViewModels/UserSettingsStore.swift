@@ -11,7 +11,6 @@ import Combine
 class UserSettingsStore: ObservableObject {
     @Published var userSettings = UserSettings.default {
         didSet {
-            print("set userSettings")
             saveSettings()
         }
     }
