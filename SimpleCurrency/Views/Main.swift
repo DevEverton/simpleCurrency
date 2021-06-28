@@ -22,7 +22,7 @@ struct Main: View {
         
     var body: some View {
         TabView {
-            ConverterView(countryVM: countryVM, isSheetPresented: $isSheetPresented, filteredList: filteredList)
+            ConverterView(countryVM: countryVM, settings: settings, isSheetPresented: $isSheetPresented, filteredList: filteredList)
                 .tabItem {
                     Label("Converter", systemImage: "dollarsign.circle")
                         .background(Color.green)

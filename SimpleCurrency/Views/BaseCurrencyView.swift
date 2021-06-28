@@ -10,6 +10,8 @@ import SDWebImageSwiftUI
 
 struct BaseCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
+    @StateObject var settings: UserSettingsStore
+    
     @State var isSheetPresented = false
     @State var inputValue: Double? = 0.0
     
@@ -29,6 +31,8 @@ struct BaseCurrencyView: View {
             }
             .font(.system(size: 12, weight: .light, design: .rounded))
             .padding(.top, 5)
+            .padding(.trailing, 10)
+
             
             Spacer()
             
@@ -56,7 +60,7 @@ struct BaseCurrencyView: View {
             }
             .padding(10)
             HStack(alignment: .center) {
-                CurrencyTextField("", value: $inputValue, alwaysShowFractions: false, numberOfDecimalPlaces: 2, currencySymbol: "")
+                CurrencyTextField("", value: $inputValue, alwaysShowFractions: false, numberOfDecimalPlaces: settings.userSettings.decimalPlaces, currencySymbol: "")
                     .font(.largeTitle)
                     .truncationMode(.tail)
                     .minimumScaleFactor(0.5)
@@ -69,8 +73,10 @@ struct BaseCurrencyView: View {
                         inputValue = 0.0
                         countryListVM.multiplier = 0.0
                     }
+                
                 Text(countryListVM.currencySymbol)
                     .font(.title)
+                    .padding(.trailing, 10)
             }
             Spacer()
 
@@ -89,7 +95,8 @@ struct BaseCurrencyView: View {
 
 struct BaseCurrencyView_Previews: PreviewProvider {
     static var previews: some View {
-        BaseCurrencyView(countryListVM: CountryListViewModel())
+        BaseCurrencyView(countryListVM: CountryListViewModel(), settings: UserSettingsStore())
+            
 
     }
 }

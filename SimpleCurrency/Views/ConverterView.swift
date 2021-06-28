@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ConverterView: View {
     @StateObject var countryVM: CountryListViewModel
+    @StateObject var settings: UserSettingsStore
+
     @Binding var isSheetPresented: Bool
     @State var filteredList = [Country]()
     
@@ -22,7 +24,7 @@ struct ConverterView: View {
             HeaderView(countryListVM: countryVM)
                 .padding(.top, 5)
             Divider()
-            BaseCurrencyView(countryListVM: countryVM)
+            BaseCurrencyView(countryListVM: countryVM, settings: settings)
             Divider()
             HStack {
                 Spacer()
@@ -30,7 +32,7 @@ struct ConverterView: View {
                     isSheetPresented.toggle()
                     
                 }, label: {
-                    Image(systemName: "plus.circle")
+                    Image(systemName: "plus.circle.fill")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("purple1"))
                 })
@@ -47,7 +49,7 @@ struct ConverterView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHGrid(rows: rows, alignment: .top){
                             ForEach(countryVM.savedCountries) { country in
-                                CardView(country: country, multiplier: countryVM.multiplier)
+                                CardView(settings: settings, country: country, multiplier: countryVM.multiplier)
                                     .padding(5)
                             }
                         }
@@ -82,7 +84,7 @@ struct ConverterView: View {
 struct ConverterView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(["iPhone 12 Pro", "iPhone 8"], id: \.self) { deviceName in
-            ConverterView(countryVM: CountryListViewModel(), isSheetPresented: .constant(false), filteredList: [])
+            ConverterView(countryVM: CountryListViewModel(), settings: UserSettingsStore(), isSheetPresented: .constant(false), filteredList: [])
                  .previewDevice(PreviewDevice(rawValue: deviceName))
 
          }

@@ -11,12 +11,14 @@ import Combine
 struct UserSettings: Codable {
     
     var prefersNotifications: Bool
-    var listOrientation: ListOrientation
-    static let `default` = UserSettings(prefersNotifications: false, listOrientation: .horizontal)
+    var listLayout: ListLayout
+    var decimalPlaces: Int
+    
+    static let `default` = UserSettings(prefersNotifications: false, listLayout: .grid, decimalPlaces: 2)
 
-    enum ListOrientation: String, Codable {
-        case horizontal = "horizontal"
-        case vertical = "vertical"
+    enum ListLayout: String, Codable {
+        case grid = "grid"
+        case list = "list"
     }
 
 }

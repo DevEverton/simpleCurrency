@@ -9,6 +9,8 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct CardView: View {
+    @StateObject var settings: UserSettingsStore
+
     
     let country: Country
     var multiplier: Double
@@ -30,7 +32,7 @@ struct CardView: View {
                 .padding(.top, 5)
                 HStack(alignment: .bottom) {
                     Spacer()
-                    Text(String(country.currency.currentValue! * multiplier).toCurrencyFormat(code: country.currency.code))
+                    Text(String(country.currency.currentValue! * multiplier).toCurrencyFormat(code: country.currency.code, decimalPlaces: settings.userSettings.decimalPlaces))
                         .font(.largeTitle)
                         .foregroundColor(.white)
                         .truncationMode(.tail)
@@ -57,7 +59,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(country: Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US"), multiplier: 1.0)
+        CardView(settings: UserSettingsStore(), country: Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US"), multiplier: 1.0)
         
     }
 }

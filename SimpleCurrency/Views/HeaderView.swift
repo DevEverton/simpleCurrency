@@ -27,7 +27,7 @@ struct HeaderView: View {
                 
             }, label: {
                 Image(systemName: "arrow.triangle.2.circlepath")
-                    .font(.system(size: 14, weight: .medium))
+                    .font(.system(size: 16, weight: .bold))
                     .foregroundColor(Color("purple1"))
             })
         }
