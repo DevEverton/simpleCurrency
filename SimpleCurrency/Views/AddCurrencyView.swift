@@ -12,6 +12,8 @@ struct AddCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
     @State var searchText = ""
     @State var filteredList = [Country]()
+    @State var editMode: EditMode = .inactive
+
     
     var body: some View {
         NavigationView {
@@ -38,6 +40,8 @@ struct AddCurrencyView: View {
                             filteredList = countryListVM.addCountryList.sorted(by: { $0.name < $1.name })
 
                         })
+                        .environment(\.editMode, $editMode)
+
                     }
                     
                     Section(header: Text("All Currencies")) {
@@ -56,10 +60,9 @@ struct AddCurrencyView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle("Select")
-                .toolbar {
-                    EditButton()
-                }
-
+                .navigationViewStyle(StackNavigationViewStyle())    
+                .navigationBarItems(trailing: EditButton())
+                .environment(\.editMode, $editMode)
             }
         }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject var settings = UserSettingsStore()
+    @StateObject var settings: UserSettingsStore
 
     
     var body: some View {
@@ -75,6 +75,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(settings: UserSettingsStore())
     }
 }

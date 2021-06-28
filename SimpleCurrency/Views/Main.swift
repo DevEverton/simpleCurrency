@@ -15,6 +15,8 @@ struct Main: View {
     }
     
     @StateObject var countryVM = CountryListViewModel()
+    @StateObject var settings = UserSettingsStore()
+
     @State var isSheetPresented = false
     @State var filteredList = [Country]()
         
@@ -27,7 +29,7 @@ struct Main: View {
                 }
                 .tag(Tab.converter)
             
-            Text("Settings")
+            SettingsView(settings: settings)
                 .tabItem {
                     Label("Settings", systemImage: "gear")
 

@@ -30,8 +30,8 @@ struct ConverterView: View {
                     isSheetPresented.toggle()
                     
                 }, label: {
-                    Image(systemName: "pencil")
-                        .font(.system(size: 20, weight: .black))
+                    Image(systemName: "plus.circle")
+                        .font(.system(size: 20, weight: .bold))
                         .foregroundColor(Color("purple1"))
                 })
             }
