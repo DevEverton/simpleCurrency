@@ -16,9 +16,11 @@ struct UserSettings: Codable {
     
     static let `default` = UserSettings(prefersNotifications: false, listLayout: .grid, decimalPlaces: 2)
 
-    enum ListLayout: String, Codable {
-        case grid = "grid"
-        case list = "list"
+    enum ListLayout: String, Codable, CaseIterable, Identifiable {
+        case grid = "Grid"
+        case list = "List"
+        
+        var id: String { self.rawValue }
     }
 
 }

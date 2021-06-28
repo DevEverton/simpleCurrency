@@ -10,10 +10,8 @@ import SwiftUI
 struct SettingsView: View {
     @StateObject var settings: UserSettingsStore
     
-    var decimalPlaces = [0, 1, 2, 3, 4]
-    
+    private let decimalPlaces = [0, 1, 2, 3, 4]
 
-    
     var body: some View {
         NavigationView {
             Form {
@@ -48,50 +46,44 @@ struct SettingsView: View {
                         Text("Layout")
                             .font(.system(size: 18, weight: .regular))
                         Spacer()
-                        Menu {
-                            Button(action: {
-                                settings.userSettings.listLayout = .grid
-                            }, label: {
-                                HStack {
-                                    Text("Grid")
-                                    Spacer()
-                                    if settings.userSettings.listLayout == .grid {
-                                        Image(systemName: "checkmark")
-                                            .font(.system(size: 16, weight: .regular))
-                                    }
-                                }
-                            })
-                            
-                            Button(action: {
-                                settings.userSettings.listLayout = .list
 
-                            }, label: {
-                                HStack {
-                                    Text("List")
-                                    Spacer()
-                                    if settings.userSettings.listLayout == .list {
-                                        Image(systemName: "checkmark")
-                                            .font(.system(size: 16, weight: .regular))
-                                    }
-                                }
-                            })
-                        } label: {
-                            Image(systemName: "ellipsis.circle")
-                                .font(.system(size: 18, weight: .bold))
+                        Picker(selection: $settings.userSettings.listLayout, label:
+                                Image(systemName: "ellipsis.circle")
+                                    .font(.system(size: 18, weight: .bold))
+                                    .accentColor(.blue)
+                        ) {
+                            ForEach(UserSettings.ListLayout.allCases) {
+                                Text($0.rawValue).tag($0)
+                            }
                         }
+                        .pickerStyle(MenuPickerStyle())
                     }
                     //MARK: - Decimal Places
                     HStack {
                         Image(systemName: "00.circle")
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(.green)
-                        Picker("Decimal Places", selection: $settings.userSettings.decimalPlaces) {
+                        Text("Decimal Places")
+                            .font(.system(size: 18, weight: .regular))
+
+                        Spacer()
+                        Text("\(settings.userSettings.decimalPlaces)")
+                            .foregroundColor(.gray)
+                        Picker(selection: $settings.userSettings.decimalPlaces, label:
+                                Image(systemName: "ellipsis.circle")
+                                    .font(.system(size: 18, weight: .bold))
+                                    .accentColor(.blue)
+                        ) {
                             ForEach(decimalPlaces, id: \.self) {
                                 Text("\($0)")
                             }
                         }
+                        .pickerStyle(MenuPickerStyle())
+
+
+
+                        
                     }
-                    .font(.system(size: 18, weight: .regular))
                 }
             }
             .navigationBarTitle("Settings")
@@ -102,5 +94,6 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView(settings: UserSettingsStore())
+            
     }
 }
