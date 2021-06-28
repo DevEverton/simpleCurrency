@@ -11,24 +11,13 @@ struct SettingsView: View {
     @StateObject var settings: UserSettingsStore
     
     private let decimalPlaces = [0, 1, 2, 3, 4]
+    private let footerText = "If notifications are enabled you'll receive a daily notification with the current price of your choosen currency"
 
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Preferences")) {
-                    
-                    //MARK: - Notifications
-                    HStack {
-                        Image(systemName: "bell.fill")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(.yellow)
+                Section(header: Text("Preferences"), footer: Text(footerText)) {
 
-                        Toggle(isOn: $settings.userSettings.prefersNotifications, label: {
-                            Text("Notifications")
-                                .font(.system(size: 18, weight: .regular))
-                        })
-                    }
-                    
                     //MARK: - Layoput
                     HStack {
                         switch settings.userSettings.listLayout {
@@ -79,11 +68,22 @@ struct SettingsView: View {
                             }
                         }
                         .pickerStyle(MenuPickerStyle())
-
-
-
-                        
+   
                     }
+                    
+                    //MARK: - Notifications
+                    HStack {
+                        Image(systemName: "bell.fill")
+                            .font(.system(size: 18, weight: .bold))
+                            .foregroundColor(.yellow)
+
+                        Toggle(isOn: $settings.userSettings.prefersNotifications, label: {
+                            Text("Notifications")
+                                .font(.system(size: 18, weight: .regular))
+                        })
+                    }
+                    
+                    
                 }
             }
             .navigationBarTitle("Settings")

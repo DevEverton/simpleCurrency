@@ -58,7 +58,6 @@ struct ConverterView: View {
                             dismissKeyboard()
                         }))
                         .aspectRatio(contentMode: .fill)
-
                     }
                     .frame(maxHeight: geometry.size.height - 50)
                 }
