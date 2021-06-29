@@ -34,12 +34,12 @@ struct ChooseBaseCurrencyView: View {
                             CurrencyCell(country: country)
                                 .onTapGesture {
                                     countryListVM.baseCountry = country
-                                    countryListVM.getCurrencyList(from: countryListVM.baseCountry.currency.code)
+                                    countryListVM.getCurrencyList(from: countryListVM.baseCountry.currencyData.code)
                                     countryListVM.multiplier = 0.0
                                     presentationMode.wrappedValue.dismiss()
                                 }
                             Spacer()
-                            if countryListVM.baseCountry.name == country.name {
+                            if countryListVM.baseCountry.currencyName == country.currencyName {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.system(size: 16, weight: .regular))
                                     .foregroundColor(Color.green)
@@ -49,7 +49,7 @@ struct ChooseBaseCurrencyView: View {
                     }
                     .animation(.easeOut(duration: 0.5))
                     .onReceive(countryListVM.$allCountries, perform: { _ in
-                        filteredList = countryListVM.allCountries.sorted(by: { $0.name < $1.name })
+                        filteredList = countryListVM.allCountries.sorted(by: { $0.currencyName < $1.currencyName })
 
                     })
                 }

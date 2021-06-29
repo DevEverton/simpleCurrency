@@ -20,10 +20,10 @@ class CountryListViewModel: ObservableObject {
     @Published var multiplier: Double = 0.0
     @Published var currencySymbol = "$" 
     
-    @Published var baseCountry = Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US") {
+    @Published var baseCountry = Country(currencyName: "US Dollar", currencyData: CurrencyData(code: "USD", currentValue: 0.0), flagCode: "US") {
         didSet {
             saveBaseCountry()
-            getCurrencySymbol(from: baseCountry.currency.code)
+            getCurrencySymbol(from: baseCountry.currencyData.code)
         }
     }
 
@@ -44,7 +44,7 @@ class CountryListViewModel: ObservableObject {
     init() {
         getRequest = .loading
         loadBaseCurrency()
-        getCurrencyList(from: baseCountry.currency.code)
+        getCurrencyList(from: baseCountry.currencyData.code)
         loadJSONCountryList()
     }
     
@@ -121,8 +121,8 @@ class CountryListViewModel: ObservableObject {
     }
     
     func updateValuesFor(_ countries: [Country]) {
-        self.savedCountries = countries.map{ Country(name: $0.name, currency: Currency(code: $0.currency.code, currentValue: getCurrentValue(for: $0.currency.code)), flagCode: getFlagCode(from: $0.name))  }
-        self.baseCountry.currency.currentValue = getCurrentValue(for: baseCountry.currency.code)
+        self.savedCountries = countries.map{ Country(currencyName: $0.currencyName, currencyData: CurrencyData(code: $0.currencyData.code, currentValue: getCurrentValue(for: $0.currencyData.code)), flagCode: getFlagCode(from: $0.currencyName))  }
+        self.baseCountry.currencyData.currentValue = getCurrentValue(for: baseCountry.currencyData.code)
     }
     
     func getCurrentValue(for code: String) -> Double {
@@ -131,13 +131,13 @@ class CountryListViewModel: ObservableObject {
     
     
     func addCountry(country: Country) {
-        savedCountries.append(Country(name: country.name, currency: Currency(code: country.currency.code, currentValue: getCurrentValue(for: country.currency.code)), flagCode: getFlagCode(from: country.name)))
+        savedCountries.append(Country(currencyName: country.currencyName, currencyData: CurrencyData(code: country.currencyData.code, currentValue: getCurrentValue(for: country.currencyData.code)), flagCode: getFlagCode(from: country.currencyName)))
         updateValuesFor(savedCountries)
         
     }
     
     func addBackToAllCountries(_ country: Country) {
-        addCountryList.append(Country(name: country.name, currency: Currency(code: country.currency.code, currentValue: getCurrentValue(for: country.currency.code)), flagCode: getFlagCode(from: country.name)))
+        addCountryList.append(Country(currencyName: country.currencyName, currencyData: CurrencyData(code: country.currencyData.code, currentValue: getCurrentValue(for: country.currencyData.code)), flagCode: getFlagCode(from: country.currencyName)))
     }
     
     func remove(country: Country) {
@@ -157,23 +157,23 @@ class CountryListViewModel: ObservableObject {
     }
     
     func sortAddCountryList() {
-        addCountryList = addCountryList.sorted(by: { $0.name < $1.name })
+        addCountryList = addCountryList.sorted(by: { $0.currencyName < $1.currencyName })
     }
     
     func sortAllCountries() {
-        allCountries = allCountries.sorted(by: { $0.name < $1.name })
+        allCountries = allCountries.sorted(by: { $0.currencyName < $1.currencyName })
     }
     
     func removeSavedCountries() {
         if !savedCountries.isEmpty {
             for country in savedCountries {
-                addCountryList = addCountryList.filter { $0.name != country.name }
+                addCountryList = addCountryList.filter { $0.currencyName != country.currencyName }
             }
         }
     }
     
     func buildCountriesList() -> [Country] {
-        Constants.countryCodes.map { Country(name: $0.key, currency: Currency(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0)), flagCode: $0.value.1) }
+        Constants.countryCodes.map { Country(currencyName: $0.key, currencyData: CurrencyData(code: $0.value.0, currentValue: getCurrentValue(for: $0.value.0)), flagCode: $0.value.1) }
     }
 
     func search(_ name: String, listType: CountryListType) -> [Country] {
@@ -183,7 +183,7 @@ class CountryListViewModel: ObservableObject {
         if name.isEmpty {
             isSearching = false
             loadBaseCurrency()
-            getCurrencyList(from: baseCountry.currency.code)
+            getCurrencyList(from: baseCountry.currencyData.code)
             loadJSONCountryList()
             switch listType {
             case .allCountries:
@@ -194,10 +194,10 @@ class CountryListViewModel: ObservableObject {
         } else {
             switch listType {
             case .allCountries:
-                return allCountries.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc()) }
+                return allCountries.filter { $0.currencyName.lc().contains(name.lc()) || $0.currencyData.code.lc().contains(name.lc()) }
                 
             case .addCountry:
-                return addCountryList.filter { $0.name.lc().contains(name.lc()) || $0.currency.code.lc().contains(name.lc())  }
+                return addCountryList.filter { $0.currencyName.lc().contains(name.lc()) || $0.currencyData.code.lc().contains(name.lc())  }
             }
         }
     }
@@ -224,6 +224,7 @@ class CountryListViewModel: ObservableObject {
                     DispatchQueue.main.async { [self] in
                         self.rates = decodedData.rates
                         getRequest = .success
+
                     }
                     
                 } else {

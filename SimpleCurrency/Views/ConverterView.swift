@@ -14,10 +14,6 @@ struct ConverterView: View {
     @Binding var isSheetPresented: Bool
     @State var filteredList = [Country]()
     
-    let rows = [
-        GridItem(.flexible(minimum: 120, maximum: 145)),
-        GridItem(.flexible(minimum: 120, maximum: 145))
-    ]
     
     var body: some View {
         VStack {
@@ -45,22 +41,7 @@ struct ConverterView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 320)
             } else {
-                GeometryReader { geometry in
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHGrid(rows: rows, alignment: .top){
-                            ForEach(countryVM.savedCountries) { country in
-                                CardView(settings: settings, country: country, multiplier: countryVM.multiplier)
-                                    .padding(5)
-                            }
-                        }
-                        .frame(maxHeight: geometry.size.height - 30)
-                        .simultaneousGesture(DragGesture().onChanged({ _ in
-                            dismissKeyboard()
-                        }))
-                        .aspectRatio(contentMode: .fill)
-                    }
-                    .frame(maxHeight: geometry.size.height - 50)
-                }
+                GridView(countryVM: countryVM, settings: settings)
 
                 Spacer()
             }
@@ -82,11 +63,14 @@ struct ConverterView: View {
 
 struct ConverterView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(["iPhone 12 Pro", "iPhone 8"], id: \.self) { deviceName in
-            ConverterView(countryVM: CountryListViewModel(), settings: UserSettingsStore(), isSheetPresented: .constant(false), filteredList: [])
-                 .previewDevice(PreviewDevice(rawValue: deviceName))
+        Group {
+            ForEach(["iPhone 12 Pro Max", "iPhone 8"], id: \.self) { deviceName in
+                ConverterView(countryVM: CountryListViewModel(), settings: UserSettingsStore(), isSheetPresented: .constant(false), filteredList: [])
+                     .previewDevice(PreviewDevice(rawValue: deviceName))
 
-         }
+            }
+        }
 
     }
 }
+

@@ -14,7 +14,7 @@ struct Main: View {
         case settings
     }
     
-    @StateObject var countryVM = CountryListViewModel()
+    @StateObject var countryListVM = CountryListViewModel()
     @StateObject var settings = UserSettingsStore()
 
     @State var isSheetPresented = false
@@ -22,7 +22,7 @@ struct Main: View {
         
     var body: some View {
         TabView {
-            ConverterView(countryVM: countryVM, settings: settings, isSheetPresented: $isSheetPresented, filteredList: filteredList)
+            ConverterView(countryVM: countryListVM, settings: settings, isSheetPresented: $isSheetPresented, filteredList: filteredList)
                 .tabItem {
                     Label("Converter", systemImage: "dollarsign.circle")
                         .background(Color.green)
@@ -45,11 +45,11 @@ struct Main: View {
 
 struct Main_Previews: PreviewProvider {
     static var previews: some View {
-//        Main()
-        ForEach(["iPhone 12 Pro", "iPhone 8"], id: \.self) { deviceName in
-             Main()
-                 .previewDevice(PreviewDevice(rawValue: deviceName))
-
-         }
+        Main()
+//        ForEach(["iPhone 12 Pro Max", "iPhone 12 mini"], id: \.self) { deviceName in
+//             Main()
+//                 .previewDevice(PreviewDevice(rawValue: deviceName))
+//
+//         }
     }
 }

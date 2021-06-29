@@ -233,7 +233,7 @@ public struct CurrencyTextField: UIViewRepresentable {
              onReturn: @escaping () -> Void = {},
              onEditingChanged: @escaping (Bool) -> Void = { _ in }
         ) {
-            print("coordinator init")
+            
             _value = value
             internalValue = value.wrappedValue
             self.isResponder = isResponder

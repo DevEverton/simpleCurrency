@@ -37,7 +37,7 @@ struct AddCurrencyView: View {
                             countryListVM.savedCountries.move(fromOffsets: indices, toOffset: newOffset)
                         })
                         .onReceive(countryListVM.$addCountryList, perform: { _ in
-                            filteredList = countryListVM.addCountryList.sorted(by: { $0.name < $1.name })
+                            filteredList = countryListVM.addCountryList.sorted(by: { $0.currencyName < $1.currencyName })
 
                         })
                         .environment(\.editMode, $editMode)

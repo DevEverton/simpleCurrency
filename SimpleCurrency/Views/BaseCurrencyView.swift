@@ -39,7 +39,7 @@ struct BaseCurrencyView: View {
             HStack {
                 Spacer()
                 HStack(alignment: .bottom) {
-                    Text(countryListVM.baseCountry.currency.code)
+                    Text(countryListVM.baseCountry.currencyData.code)
                         .font(.system(size: 18, weight: .bold, design: .rounded))
 
                     AnimatedImage(url: Constants.flagLink(countryListVM.baseCountry.flagCode))

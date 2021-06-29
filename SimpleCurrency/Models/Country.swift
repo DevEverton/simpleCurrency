@@ -10,12 +10,11 @@ import Foundation
 
 struct Country: Identifiable, Codable, Equatable {
     static func == (lhs: Country, rhs: Country) -> Bool {
-        lhs.name == rhs.name
+        lhs.currencyName == rhs.currencyName
     }
-    
 
     var id = UUID()
-    var name: String
-    var currency: Currency
+    var currencyName: String
+    var currencyData: CurrencyData
     var flagCode: String
 }

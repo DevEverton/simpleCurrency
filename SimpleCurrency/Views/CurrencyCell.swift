@@ -17,7 +17,7 @@ struct CurrencyCell: View {
             AnimatedImage(url: Constants.flagLink(country.flagCode))
                 .resizable()
                 .frame(width: 32, height: 32)
-            Text("\(country.name) (\(country.currency.code))")
+            Text("\(country.currencyName) (\(country.currencyData.code))")
                 .font(.system(size: 18, weight: .semibold, design: .rounded))
                 .padding(.leading, 10)
         }
@@ -27,7 +27,7 @@ struct CurrencyCell: View {
 
 struct CurrencyCell_Previews: PreviewProvider {
     static var previews: some View {
-        CurrencyCell(country: Country(name: "United States", currency: Currency(code: "USD", currentValue: 0.0), flagCode: "US"))
+        CurrencyCell(country: Country(currencyName: "United States", currencyData: CurrencyData(code: "USD", currentValue: 0.0), flagCode: "US"))
             .previewLayout(.sizeThatFits)
             .padding(10)
     }
