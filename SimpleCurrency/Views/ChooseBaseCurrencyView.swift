@@ -54,7 +54,7 @@ struct ChooseBaseCurrencyView: View {
                     })
                 }
                 .listStyle(InsetGroupedListStyle())
-                .navigationTitle("All currencies")
+                .navigationTitle("Choose")
      
 
             }

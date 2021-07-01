@@ -41,7 +41,14 @@ struct ConverterView: View {
                     .frame(maxWidth: .infinity)
                     .frame(height: 320)
             } else {
-                GridView(countryVM: countryVM, settings: settings)
+                
+                switch settings.userSettings.listLayout {
+                case .grid:
+                    GridView(countryListVM: countryVM, settings: settings)
+
+                case .list:
+                    ListView(countryListVM: countryVM, settings: settings)
+                }
 
                 Spacer()
             }

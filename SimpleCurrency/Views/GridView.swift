@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GridView: View {
-    @StateObject var countryVM: CountryListViewModel
+    @StateObject var countryListVM: CountryListViewModel
     @StateObject var settings: UserSettingsStore
     
     let rows = [
@@ -20,8 +20,8 @@ struct GridView: View {
         GeometryReader { geometry in
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: rows, alignment: .top){
-                    ForEach(countryVM.savedCountries) { country in
-                        CardView(settings: settings, country: country, multiplier: countryVM.multiplier)
+                    ForEach(countryListVM.savedCountries) { country in
+                        CardView(settings: settings, country: country, multiplier: countryListVM.multiplier)
                             .padding(5)
                     }
                 }
@@ -39,7 +39,7 @@ struct GridView: View {
 
 struct GridView_Previews: PreviewProvider {
     static var previews: some View {
-        GridView(countryVM: CountryListViewModel(), settings: UserSettingsStore())
+        GridView(countryListVM: CountryListViewModel(), settings: UserSettingsStore())
             
     }
 }

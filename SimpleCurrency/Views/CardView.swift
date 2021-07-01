@@ -11,7 +11,6 @@ import SDWebImageSwiftUI
 struct CardView: View {
     @StateObject var settings: UserSettingsStore
 
-    
     let country: Country
     var multiplier: Double
 

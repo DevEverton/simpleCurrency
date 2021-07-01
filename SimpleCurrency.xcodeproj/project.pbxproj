@@ -23,6 +23,8 @@
 		5071FAE426591F7B00F19955 /* CurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE326591F7B00F19955 /* CurrencyData.swift */; };
 		5071FAEA265922D000F19955 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAE9265922CF00F19955 /* Country.swift */; };
 		5071FAED2659270E00F19955 /* CountryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5071FAEC2659270E00F19955 /* CountryListViewModel.swift */; };
+		5077A3F2268E44F400F19282 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5077A3F1268E44F400F19282 /* ListCell.swift */; };
+		5077A3F4268E450A00F19282 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5077A3F3268E450A00F19282 /* ListView.swift */; };
 		507DBEB82672897400E8596A /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 507DBEB72672897400E8596A /* SDWebImageSwiftUI */; };
 		509BBB79267BD43C0024E8E2 /* CurrencytextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509BBB78267BD43C0024E8E2 /* CurrencytextField.swift */; };
 		50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4E01265C82CB00CB8667 /* Constants.swift */; };
@@ -52,6 +54,8 @@
 		5071FAE326591F7B00F19955 /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
 		5071FAE9265922CF00F19955 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		5071FAEC2659270E00F19955 /* CountryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListViewModel.swift; sourceTree = "<group>"; };
+		5077A3F1268E44F400F19282 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		5077A3F3268E450A00F19282 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		509BBB78267BD43C0024E8E2 /* CurrencytextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencytextField.swift; sourceTree = "<group>"; };
 		50AB4E01265C82CB00CB8667 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		50E26C6D26876E5200F60394 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
@@ -138,10 +142,12 @@
 			children = (
 				5040E7822667046900847988 /* Main.swift */,
 				505FCBB32680B5FE0041C908 /* ConverterView.swift */,
-				50E26C85268BE3F300F60394 /* GridView.swift */,
 				5040E77E26666F6500847988 /* HeaderView.swift */,
 				5040E780266701F000847988 /* BaseCurrencyView.swift */,
+				50E26C85268BE3F300F60394 /* GridView.swift */,
 				5040E7842669553500847988 /* CardView.swift */,
+				5077A3F3268E450A00F19282 /* ListView.swift */,
+				5077A3F1268E44F400F19282 /* ListCell.swift */,
 				5040E78E266E485000847988 /* SearchBar.swift */,
 				5040E786266A65FB00847988 /* AddCurrencyView.swift */,
 				5040E790266E57F000847988 /* CurrencyCell.swift */,
@@ -258,6 +264,7 @@
 				505FCBB2267E26190041C908 /* EmptyListView.swift in Sources */,
 				50E26C7226891ECF00F60394 /* SettingsView.swift in Sources */,
 				50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */,
+				5077A3F4268E450A00F19282 /* ListView.swift in Sources */,
 				5040E77F26666F6500847988 /* HeaderView.swift in Sources */,
 				509BBB79267BD43C0024E8E2 /* CurrencytextField.swift in Sources */,
 				5071FAD026591A3700F19955 /* SimpleCurrencyApp.swift in Sources */,
@@ -268,6 +275,7 @@
 				5071FAEA265922D000F19955 /* Country.swift in Sources */,
 				50E26C6E26876E5200F60394 /* UserSettings.swift in Sources */,
 				5040E7832667046900847988 /* Main.swift in Sources */,
+				5077A3F2268E44F400F19282 /* ListCell.swift in Sources */,
 				50E26C702687762900F60394 /* UserSettingsStore.swift in Sources */,
 				5040E7932670E5F700847988 /* ChooseBaseCurrencyView.swift in Sources */,
 				5040E78F266E485000847988 /* SearchBar.swift in Sources */,
