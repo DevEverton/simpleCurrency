@@ -16,6 +16,7 @@ struct Main: View {
     
     @StateObject var countryListVM = CountryListViewModel()
     @StateObject var settings = UserSettingsStore()
+    var notification = LocalNotification()
 
     @State var isSheetPresented = false
     @State var filteredList = [Country]()
@@ -37,6 +38,15 @@ struct Main: View {
                 .tag(Tab.settings)
         }
         .accentColor(Color("purple2"))
+        .onReceive(settings.$userSettings) { setting in
+            if setting.prefersNotifications {
+                notification.requestPermission()
+                notification.scheduleNotification(baseCurrency: countryListVM.baseCountry, savedCountries: countryListVM.savedCountries)
+            } else {
+                notification.removeNotification()
+            }
+        }
+
 
  
     }

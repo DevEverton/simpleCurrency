@@ -17,6 +17,7 @@ class UserSettingsStore: ObservableObject {
     
     init() {
         loadSettings()
+        
     }
     
     private func saveSettings() {

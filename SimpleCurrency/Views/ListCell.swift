@@ -21,7 +21,7 @@ struct ListCell: View {
                     .resizable()
                     .frame(width: 32, height: 32)
                 Text("\(country.currencyName)")
-                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
                     .padding(.leading, 5)
                     .lineLimit(2)
 

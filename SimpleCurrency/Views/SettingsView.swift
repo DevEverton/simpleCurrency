@@ -12,6 +12,7 @@ struct SettingsView: View {
     
     private let decimalPlaces = [0, 1, 2, 3, 4]
     private let footerText = "If notifications are enabled you'll receive a daily notification with the current price of your choosen currency"
+    
 
     var body: some View {
         NavigationView {
@@ -82,10 +83,10 @@ struct SettingsView: View {
                                 .font(.system(size: 18, weight: .regular))
                         })
                     }
-                    
                 }
             }
             .navigationBarTitle("Settings")
+
         }
     }
 }
