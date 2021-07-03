@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import UserNotifications
 
 struct LocalNotification {
@@ -21,16 +22,27 @@ struct LocalNotification {
     }
     
     func scheduleNotification(baseCurrency: Country, savedCountries: [Country]) {
+        let emptyListBodyMessage = "Currency list is empty. Open the app and add currencies"
+        
+        var bodyMessage: String {
+            if savedCountries.count <= 5 {
+                return savedCountries.map { String($0.currencyData.currentValue!).toCurrencyFormat(code: $0.currencyData.code, decimalPlaces: 2) + " | " } .reduce("", {$0 + $1})
+            }
+            return savedCountries.map { String($0.currencyData.currentValue!).toCurrencyFormat(code: $0.currencyData.code, decimalPlaces: 2) + " | " }[..<5] .reduce("", {$0 + $1})
+        }
+        
+
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = "Current price of \(String(baseCurrency.currencyData.currentValue!).toCurrencyFormat(code: baseCurrency.currencyData.code, decimalPlaces: 2)) \(baseCurrency.currencyData.code)"
-        notificationContent.body = savedCountries.map { String($0.currencyData.currentValue!).toCurrencyFormat(code: $0.currencyData.code, decimalPlaces: 2) + " | " } .reduce("", {$0 + $1})
+        
+        notificationContent.body = savedCountries.isEmpty ? emptyListBodyMessage : bodyMessage
                                                 
         notificationContent.badge = NSNumber(value: 1)
         notificationContent.sound = .default
                         
         var datComp = DateComponents()
-        datComp.hour = 8
-        datComp.minute = 0
+        datComp.hour = 10
+        datComp.minute = 30
         let trigger = UNCalendarNotificationTrigger(dateMatching: datComp, repeats: true)
         let request = UNNotificationRequest(identifier: "price", content: notificationContent, trigger: trigger)
         
