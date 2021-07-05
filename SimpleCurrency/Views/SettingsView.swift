@@ -73,16 +73,19 @@ struct SettingsView: View {
                     }
                     
                     //MARK: - Notifications
-                    HStack {
-                        Image(systemName: "bell.fill")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(.yellow)
+                    NavigationLink(
+                        destination: NotificationSettingsView(settings: settings),
+                        label: {
+                            HStack {
+                                Image(systemName: "bell.fill")
+                                    .font(.system(size: 18, weight: .bold))
+                                    .foregroundColor(.yellow)
 
-                        Toggle(isOn: $settings.userSettings.prefersNotifications, label: {
-                            Text("Notifications")
-                                .font(.system(size: 18, weight: .regular))
+                                Text("Notifications")
+                                    .font(.system(size: 18, weight: .regular))
+                            }
                         })
-                    }
+
                 }
             }
             .navigationBarTitle("Settings")

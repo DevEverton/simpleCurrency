@@ -21,7 +21,7 @@ struct LocalNotification {
         }
     }
     
-    func scheduleNotification(baseCurrency: Country, savedCountries: [Country]) {
+    func scheduleNotification(baseCurrency: Country, savedCountries: [Country], time: NotificationTime?) {
         let emptyListBodyMessage = "Currency list is empty. Open the app and add currencies"
         
         var bodyMessage: String {
@@ -41,8 +41,8 @@ struct LocalNotification {
         notificationContent.sound = .default
                         
         var datComp = DateComponents()
-        datComp.hour = 10
-        datComp.minute = 30
+        datComp.hour = time?.hour ?? 8
+        datComp.minute = time?.minutes ?? 0
         let trigger = UNCalendarNotificationTrigger(dateMatching: datComp, repeats: true)
         let request = UNNotificationRequest(identifier: "price", content: notificationContent, trigger: trigger)
         
@@ -51,10 +51,12 @@ struct LocalNotification {
                 print(error.localizedDescription)
             }
         }
+        
     }
     
     func removeNotification() {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["price"])
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+//        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["price"])
     }
     
 }

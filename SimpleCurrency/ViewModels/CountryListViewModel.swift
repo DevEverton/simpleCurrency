@@ -38,9 +38,6 @@ class CountryListViewModel: ObservableObject {
     {
         didSet {
             updateAndSortData()
-            let test = savedCountries.map { String($0.currencyData.currentValue!).toCurrencyFormat(code: $0.currencyData.code, decimalPlaces: 2) + " " } .reduce("", {$0 + $1})
-            print("TEST")
-            print(test)
         }
     }
     

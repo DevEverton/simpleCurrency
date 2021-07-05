@@ -11,6 +11,7 @@ import Combine
 struct UserSettings: Codable {
     
     var prefersNotifications: Bool
+    var notificationTime: NotificationTime? = nil
     var listLayout: ListLayout
     var decimalPlaces: Int
     
@@ -25,5 +26,8 @@ struct UserSettings: Codable {
 
 }
 
-
+struct NotificationTime: Codable {
+    var hour: Int
+    var minutes: Int
+}
 

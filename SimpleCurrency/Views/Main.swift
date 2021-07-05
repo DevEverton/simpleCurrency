@@ -40,14 +40,15 @@ struct Main: View {
         .accentColor(Color("purple2"))
         .onReceive(settings.$userSettings) { setting in
             if setting.prefersNotifications {
+                print("Notification shceduled")
                 notification.requestPermission()
-                notification.scheduleNotification(baseCurrency: countryListVM.baseCountry, savedCountries: countryListVM.savedCountries)
+                notification.scheduleNotification(baseCurrency: countryListVM.baseCountry, savedCountries: countryListVM.savedCountries, time: settings.userSettings.notificationTime)
             } else {
                 notification.removeNotification()
+                print("Notification removed")
+
             }
         }
-
-
  
     }
     
