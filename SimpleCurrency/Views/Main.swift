@@ -26,7 +26,6 @@ struct Main: View {
             ConverterView(countryVM: countryListVM, settings: settings, isSheetPresented: $isSheetPresented, filteredList: filteredList)
                 .tabItem {
                     Label("Converter", systemImage: "dollarsign.circle")
-                        .background(Color.green)
                 }
                 .tag(Tab.converter)
             
@@ -37,7 +36,7 @@ struct Main: View {
                 }
                 .tag(Tab.settings)
         }
-        .accentColor(Color("purple2"))
+        .accentColor(Color("purple1"))
         .onReceive(settings.$userSettings) { setting in
             if setting.prefersNotifications {
                 print("Notification shceduled")

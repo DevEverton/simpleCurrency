@@ -9,7 +9,6 @@ import SwiftUI
 
 struct NotificationSettingsView: View {
     @StateObject var settings: UserSettingsStore
-    @State private var date = Date()
     @State var calendar = Calendar.current
     
 
@@ -17,27 +16,29 @@ struct NotificationSettingsView: View {
         Form {
             HStack {
                 Toggle(isOn: $settings.userSettings.prefersNotifications, label: {
-                    Text("Notifications Enabled")
-                        .font(.system(size: 18, weight: .regular))
+                    Text("Enable Notifications").bold()
+
                 })
             }
             if settings.userSettings.prefersNotifications {
-                HStack {
-                    Spacer()
-                    DatePicker("", selection: $date, displayedComponents: .hourAndMinute)
-                    .labelsHidden()
+                DatePicker(selection: $settings.userSettings.date, displayedComponents: .hourAndMinute) {
+                    Text("Scheduled time")
 
                 }
             }
+            
         }
         .animation(.easeInOut)
-        .onChange(of: date) { _ in
-            let hour = calendar.component(.hour, from: date)
-            let minutes = calendar.component(.minute, from: date)
+        .onChange(of: settings.userSettings.date) { _ in
+            let hour = calendar.component(.hour, from: settings.userSettings.date)
+            let minutes = calendar.component(.minute, from: settings.userSettings.date)
+
             settings.userSettings.notificationTime = NotificationTime(hour: hour, minutes: minutes)
         }
 
     }
+    
+    
 }
 
 struct NotificationSettingsView_Previews: PreviewProvider {

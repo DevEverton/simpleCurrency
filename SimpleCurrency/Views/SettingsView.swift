@@ -25,11 +25,11 @@ struct SettingsView: View {
                         case .grid:
                             Image(systemName: "square.grid.2x2.fill")
                                 .font(.system(size: 18, weight: .bold))
-                                .foregroundColor(Color("purple2"))
+                                .foregroundColor(Color("purple1"))
                         case .list:
                             Image(systemName: "list.bullet")
                                 .font(.system(size: 18, weight: .bold))
-                                .foregroundColor(Color("purple2"))
+                                .foregroundColor(Color("purple1"))
                         }
                             
                         
@@ -43,8 +43,10 @@ struct SettingsView: View {
                                     .accentColor(.blue)
                         ) {
                             ForEach(UserSettings.ListLayout.allCases) {
-                                Text($0.rawValue).tag($0)
+                                Text($0.rawValue)
+                                    .tag($0)
                             }
+                            
                         }
                         .pickerStyle(MenuPickerStyle())
                     }
@@ -89,6 +91,7 @@ struct SettingsView: View {
                 }
             }
             .navigationBarTitle("Settings")
+
 
         }
     }

@@ -10,6 +10,7 @@ import Combine
 
 struct UserSettings: Codable {
     
+    var date = Date()
     var prefersNotifications: Bool
     var notificationTime: NotificationTime? = nil
     var listLayout: ListLayout
