@@ -37,15 +37,18 @@ struct Main: View {
                 .tag(Tab.settings)
         }
         .accentColor(Color("purple1"))
+        .onChange(of: settings.userSettings.prefersNotifications) { enabled in
+            if enabled {
+                notification.requestPermission()
+            } else {
+                notification.removeNotification()
+            }
+        }
         .onChange(of: settings.userSettings.notificationTime) { _ in
             if settings.userSettings.prefersNotifications {
-                notification.requestPermission()
                 notification.removeNotification()
 
                 notification.scheduleNotification(baseCurrency: countryListVM.baseCountry, savedCountries: countryListVM.savedCountries, time: settings.userSettings.notificationTime)
-                
-            } else {
-                notification.removeNotification()
             }
         }
  

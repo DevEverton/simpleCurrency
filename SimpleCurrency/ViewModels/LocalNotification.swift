@@ -55,8 +55,7 @@ struct LocalNotification {
     }
     
     func removeNotification() {
-        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-//        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["price"])
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
 }
