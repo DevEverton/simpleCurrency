@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import SwiftfulLoadingIndicators
 
 struct BaseCurrencyView: View {
     @StateObject var countryListVM: CountryListViewModel
@@ -22,7 +23,7 @@ struct BaseCurrencyView: View {
             HStack(spacing: 2) {
                 Spacer()
                 if countryListVM.getRequest != .success {
-                    ProgressView()
+                    LoadingIndicator(animation: .threeBalls, color: Color("purple1"), size: .small, speed: .fast)
                 } else {
                     Text("Updated:")
                     Text(date, style: .date)

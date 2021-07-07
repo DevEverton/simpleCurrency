@@ -20,11 +20,6 @@ struct ChooseBaseCurrencyView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-    //            Text("All Currencies")
-    //                .font(.system(size: 30, weight: .semibold, design: .rounded))
-    //                .padding(.leading, 10)
-    //                .padding(.top)
-                
                 SearchBar(searchText: $searchText, listType: .allCountries, countryListVM: countryListVM, filteredList: $filteredList)
                     .padding(.vertical, 16)
                     .padding(.horizontal, 10)

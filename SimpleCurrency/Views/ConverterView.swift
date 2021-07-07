@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftfulLoadingIndicators
+
 
 struct ConverterView: View {
-    @StateObject var countryVM: CountryListViewModel
+    @StateObject var countryListVM: CountryListViewModel
     @StateObject var settings: UserSettingsStore
 
     @Binding var isSheetPresented: Bool
@@ -17,10 +19,10 @@ struct ConverterView: View {
     
     var body: some View {
         VStack {
-            HeaderView(countryListVM: countryVM)
+            HeaderView(countryListVM: countryListVM)
                 .padding(.top, 5)
             Divider()
-            BaseCurrencyView(countryListVM: countryVM, settings: settings)
+            BaseCurrencyView(countryListVM: countryListVM, settings: settings)
             Divider()
             HStack {
                 Spacer()
@@ -36,31 +38,51 @@ struct ConverterView: View {
             .padding([.trailing, .top], 10)
             .padding(.bottom, 5)
             
-            if countryVM.savedCountries.isEmpty {
+            if countryListVM.savedCountries.isEmpty {
                 EmptyListView(isTapped: $isSheetPresented)
                     .frame(maxWidth: .infinity)
                     .frame(height: 320)
             } else {
-                
-                switch settings.userSettings.listLayout {
-                case .grid:
-                    GridView(countryListVM: countryVM, settings: settings)
-
-                case .list:
-                    ListView(countryListVM: countryVM, settings: settings)
+                switch countryListVM.getRequest {
+                    case .loading:
+                        VStack {
+                            Spacer()
+                            LoadingIndicator(animation: .threeBalls, color: Color("purple1"), size: .large, speed: .fast)
+                            Spacer()
+                        }
+                        .padding(.bottom, 50)
+                    case .success:
+                        switch settings.userSettings.listLayout {
+                        case .grid:
+                            GridView(countryListVM: countryListVM, settings: settings)
+                                .transition(.slide)
+                                .animation(.easeIn(duration: 0.1))
+                            
+                        case .list:
+                            ListView(countryListVM: countryListVM, settings: settings)
+                                .transition(.slide)
+                                .animation(.easeIn(duration: 0.1))
+                        }
+                    case .failure:
+                        Text("failure")
                 }
+                
 
                 Spacer()
             }
             Spacer()
 
         }
-        .sheet(isPresented: $isSheetPresented, content: {
-            AddCurrencyView(countryListVM: countryVM, filteredList: filteredList)
+        .sheet(isPresented: $isSheetPresented, onDismiss: {
+            
+        } , content: {
+            AddCurrencyView(countryListVM: countryListVM, filteredList: filteredList)
         })
+
         .onTapGesture {
            dismissKeyboard()
         }
+        
         .edgesIgnoringSafeArea(.bottom)
 
  
@@ -70,13 +92,14 @@ struct ConverterView: View {
 
 struct ConverterView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            ForEach(["iPhone 12 Pro Max", "iPhone 8"], id: \.self) { deviceName in
-                ConverterView(countryVM: CountryListViewModel(), settings: UserSettingsStore(), isSheetPresented: .constant(false), filteredList: [])
-                     .previewDevice(PreviewDevice(rawValue: deviceName))
-
-            }
-        }
+        ConverterView(countryListVM: CountryListViewModel(), settings: UserSettingsStore(), isSheetPresented: .constant(false), filteredList: [])
+//        Group {
+//            ForEach(["iPhone 12 Pro Max", "iPhone 8"], id: \.self) { deviceName in
+//                ConverterView(countryListVM: CountryListViewModel(), settings: UserSettingsStore(), isSheetPresented: .constant(false), filteredList: [])
+//                     .previewDevice(PreviewDevice(rawValue: deviceName))
+//
+//            }
+//        }
 
     }
 }

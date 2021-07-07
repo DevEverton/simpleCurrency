@@ -13,6 +13,7 @@ class UserSettingsStore: ObservableObject {
         didSet {
             saveSettings()
         }
+
     }
     
     init() {
@@ -24,11 +25,13 @@ class UserSettingsStore: ObservableObject {
         let encoder = JSONEncoder()
         
         do {
-            let encondedSettings = try encoder.encode(userSettings)
+            let encondedSettings = try encoder.encode(self.userSettings)
             UserDefaults.standard.set(encondedSettings, forKey: "settings")
+            
         } catch let error {
-            print(error)
+            print("Error on saving Settings: \(error.localizedDescription)")
         }
+        
     }
     
     private func loadSettings() {
@@ -40,7 +43,7 @@ class UserSettingsStore: ObservableObject {
                 userSettings = decodedSettings
             }
         } catch let error {
-            print(error)
+            print("Error on loading Settings: \(error.localizedDescription)")
         }
     }
 }

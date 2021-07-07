@@ -23,13 +23,13 @@ struct Main: View {
         
     var body: some View {
         TabView {
-            ConverterView(countryVM: countryListVM, settings: settings, isSheetPresented: $isSheetPresented, filteredList: filteredList)
+            ConverterView(countryListVM: countryListVM, settings: settings, isSheetPresented: $isSheetPresented, filteredList: filteredList)
                 .tabItem {
                     Label("Converter", systemImage: "dollarsign.circle")
                 }
                 .tag(Tab.converter)
             
-            SettingsView(settings: settings)
+            SettingsView(settings: settings, listLayout: settings.userSettings.listLayout)
                 .tabItem {
                     Label("Settings", systemImage: "gear")
 
@@ -37,15 +37,15 @@ struct Main: View {
                 .tag(Tab.settings)
         }
         .accentColor(Color("purple1"))
-        .onReceive(settings.$userSettings) { setting in
-            if setting.prefersNotifications {
-                print("Notification shceduled")
+        .onChange(of: settings.userSettings.notificationTime) { _ in
+            if settings.userSettings.prefersNotifications {
                 notification.requestPermission()
+                notification.removeNotification()
+
                 notification.scheduleNotification(baseCurrency: countryListVM.baseCountry, savedCountries: countryListVM.savedCountries, time: settings.userSettings.notificationTime)
+                
             } else {
                 notification.removeNotification()
-                print("Notification removed")
-
             }
         }
  

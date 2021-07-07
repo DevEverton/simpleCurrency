@@ -34,6 +34,7 @@ struct NotificationSettingsView: View {
             let minutes = calendar.component(.minute, from: settings.userSettings.date)
 
             settings.userSettings.notificationTime = NotificationTime(hour: hour, minutes: minutes)
+            
         }
 
     }

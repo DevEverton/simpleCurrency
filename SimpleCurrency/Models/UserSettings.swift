@@ -27,7 +27,7 @@ struct UserSettings: Codable {
 
 }
 
-struct NotificationTime: Codable {
+struct NotificationTime: Codable, Equatable {
     var hour: Int
     var minutes: Int
 }

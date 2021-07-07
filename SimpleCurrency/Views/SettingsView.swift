@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject var settings: UserSettingsStore
+    @State var listLayout: UserSettings.ListLayout
+
     
     private let decimalPlaces = [0, 1, 2, 3, 4]
     private let footerText = "If notifications are enabled you'll receive a daily notification with the current price of your choosen currency"
@@ -19,9 +21,9 @@ struct SettingsView: View {
             Form {
                 Section(header: Text("Preferences"), footer: Text(footerText)) {
 
-                    //MARK: - Layoput
+                    //MARK: - Layout
                     HStack {
-                        switch settings.userSettings.listLayout {
+                        switch listLayout {
                         case .grid:
                             Image(systemName: "square.grid.2x2.fill")
                                 .font(.system(size: 18, weight: .bold))
@@ -37,7 +39,7 @@ struct SettingsView: View {
                             .font(.system(size: 18, weight: .regular))
                         Spacer()
 
-                        Picker(selection: $settings.userSettings.listLayout, label:
+                        Picker(selection: $listLayout, label:
                                 Image(systemName: "ellipsis.circle")
                                     .font(.system(size: 18, weight: .bold))
                                     .accentColor(.blue)
@@ -49,6 +51,7 @@ struct SettingsView: View {
                             
                         }
                         .pickerStyle(MenuPickerStyle())
+
                     }
                     //MARK: - Decimal Places
                     HStack {
@@ -91,15 +94,22 @@ struct SettingsView: View {
                 }
             }
             .navigationBarTitle("Settings")
+            .onAppear {
+                listLayout = settings.userSettings.listLayout
+            }
+            .onDisappear {
+                settings.userSettings.listLayout = listLayout
+            }
 
 
         }
+
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(settings: UserSettingsStore())
+        SettingsView(settings: UserSettingsStore(), listLayout: .grid)
             
     }
 }

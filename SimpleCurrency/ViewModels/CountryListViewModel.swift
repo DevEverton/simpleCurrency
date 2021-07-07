@@ -31,6 +31,7 @@ class CountryListViewModel: ObservableObject {
     @Published var savedCountries = [Country]() {
         didSet {
             saveJSONCountryList()
+            
         }
     }
     
@@ -60,6 +61,7 @@ class CountryListViewModel: ObservableObject {
     //MARK: - JSON local persistence
     
     private func loadJSONCountryList() {
+
         guard FileManager.default.fileExists(atPath: countriesJsonUrl.path) else { return }
         
         //        let filePath = FileManager.documentsDirectoryURL.path
@@ -70,12 +72,14 @@ class CountryListViewModel: ObservableObject {
         do {
             let countriesData = try Data(contentsOf: countriesJsonUrl)
             savedCountries = try decoder.decode([Country].self, from: countriesData)
+
         } catch let error {
             print(error)
         }
     }
     
     private func saveJSONCountryList() {
+
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         
@@ -132,7 +136,6 @@ class CountryListViewModel: ObservableObject {
     
     func addCountry(country: Country) {
         savedCountries.append(Country(currencyName: country.currencyName, currencyData: CurrencyData(code: country.currencyData.code, currentValue: getCurrentValue(for: country.currencyData.code)), flagCode: getFlagCode(from: country.currencyName)))
-        updateValuesFor(savedCountries)
         
     }
     
@@ -224,7 +227,6 @@ class CountryListViewModel: ObservableObject {
                     DispatchQueue.main.async { [self] in
                         self.rates = decodedData.rates
                         getRequest = .success
-
                     }
                     
                 } else {

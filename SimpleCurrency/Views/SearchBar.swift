@@ -28,7 +28,6 @@ struct SearchBar: View {
                 .onTapGesture {
                     self.isEditing = true
                 }
-                .animation(.spring())
                 .font(.system(size: 16, weight: .regular, design: .rounded))
                 .onChange(of: searchText, perform: { value in
                     if searchText.count > 30 {

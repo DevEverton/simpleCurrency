@@ -15,6 +15,7 @@ struct EmptyListView: View {
             Image(systemName: "plus.circle").font(.system(size: 60, weight: .medium))
             Text("Click to add")
                 .font(.system(size: 20, weight: .medium, design: .default))
+ 
         }
         .foregroundColor(Color.gray.opacity(0.6))
         .onTapGesture {
