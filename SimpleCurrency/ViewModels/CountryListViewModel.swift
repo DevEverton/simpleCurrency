@@ -22,6 +22,7 @@ class CountryListViewModel: ObservableObject {
     
     @Published var baseCountry = Country(currencyName: "US Dollar", currencyData: CurrencyData(code: "USD", currentValue: 0.0), flagCode: "US") {
         didSet {
+            getRequest = .loading
             saveBaseCountry()
             getCurrencySymbol(from: baseCountry.currencyData.code)
         }
@@ -136,7 +137,6 @@ class CountryListViewModel: ObservableObject {
     
     func addCountry(country: Country) {
         savedCountries.append(Country(currencyName: country.currencyName, currencyData: CurrencyData(code: country.currencyData.code, currentValue: getCurrentValue(for: country.currencyData.code)), flagCode: getFlagCode(from: country.currencyName)))
-        
     }
     
     func addBackToAllCountries(_ country: Country) {
@@ -186,8 +186,8 @@ class CountryListViewModel: ObservableObject {
         if name.isEmpty {
             isSearching = false
             loadBaseCurrency()
-            getCurrencyList(from: baseCountry.currencyData.code)
             loadJSONCountryList()
+            getRequest = .success
             switch listType {
             case .allCountries:
                 return allCountries

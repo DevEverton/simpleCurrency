@@ -44,27 +44,25 @@ struct ConverterView: View {
                     .frame(height: 320)
             } else {
                 switch countryListVM.getRequest {
-                    case .loading:
-                        VStack {
-                            Spacer()
-                            LoadingIndicator(animation: .threeBalls, color: Color("purple1"), size: .large, speed: .fast)
-                            Spacer()
-                        }
-                        .padding(.bottom, 50)
-                    case .success:
-                        switch settings.userSettings.listLayout {
-                        case .grid:
-                            GridView(countryListVM: countryListVM, settings: settings)
-                                .transition(.slide)
-                                .animation(.easeIn(duration: 0.1))
-                            
-                        case .list:
-                            ListView(countryListVM: countryListVM, settings: settings)
-                                .transition(.slide)
-                                .animation(.easeIn(duration: 0.1))
-                        }
-                    case .failure:
-                        Text("failure")
+                case .loading:
+                    VStack {
+                        Spacer()
+                        LoadingIndicator(animation: .threeBalls, color: Color("purple1"), size: .large, speed: .fast)
+                        Spacer()
+                    }
+                    .padding(.bottom, 50)
+                case .success, .failure:
+                    switch settings.userSettings.listLayout {
+                    case .grid:
+                        GridView(countryListVM: countryListVM, settings: settings)
+                            .transition(.slide)
+                            .animation(.easeIn(duration: 0.2))
+                        
+                    case .list:
+                        ListView(countryListVM: countryListVM, settings: settings)
+                            .transition(.slide)
+                            .animation(.easeIn(duration: 0.2))
+                    }
                 }
                 
 

@@ -36,6 +36,7 @@ struct SearchBar: View {
                     filteredList = countryListVM.search(searchText, listType: listType)
 
                 })
+                .animation(.default)
                 .autocapitalization(.none)
                 
 

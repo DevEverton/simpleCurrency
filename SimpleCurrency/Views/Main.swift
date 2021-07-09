@@ -19,6 +19,7 @@ struct Main: View {
     var notification = LocalNotification()
 
     @State var isSheetPresented = false
+    @State var isShowingAlert = false
     @State var filteredList = [Country]()
         
     var body: some View {
@@ -51,7 +52,19 @@ struct Main: View {
                 notification.scheduleNotification(baseCurrency: countryListVM.baseCountry, savedCountries: countryListVM.savedCountries, time: settings.userSettings.notificationTime)
             }
         }
- 
+        .onChange(of: countryListVM.getRequest, perform: { request in
+            if request == .failure {
+                isShowingAlert.toggle()
+            }
+        })
+        .alert(isPresented: $isShowingAlert) {
+            Alert(
+                title: Text("Connectivity error"),
+                message: Text("Seems like you are not connected to the internet. Check your connectivity and try again."),
+                dismissButton: .default(Text("Dismiss"))
+            )
+        }
+         
     }
     
 }

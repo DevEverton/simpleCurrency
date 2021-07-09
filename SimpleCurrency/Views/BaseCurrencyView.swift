@@ -22,13 +22,18 @@ struct BaseCurrencyView: View {
          VStack {
             HStack(spacing: 2) {
                 Spacer()
-                if countryListVM.getRequest != .success {
+                switch countryListVM.getRequest {
+                case .loading:
                     LoadingIndicator(animation: .threeBalls, color: Color("purple1"), size: .small, speed: .fast)
-                } else {
+                case .success:
                     Text("Updated:")
                     Text(date, style: .date)
                     Text(date, style: .time)
+                case .failure:
+                    Text("Connectivity failure")
+                    
                 }
+
             }
             .font(.system(size: 12, weight: .light, design: .rounded))
             .padding(.top, 5)

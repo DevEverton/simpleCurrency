@@ -50,7 +50,7 @@ struct AddCurrencyView: View {
                                 .onTapGesture {
                                     countryListVM.addCountry(country: country)
                                     countryListVM.remove(country: country)
-
+                                    
                                 }
                         }
                     }
