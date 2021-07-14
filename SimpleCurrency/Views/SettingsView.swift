@@ -93,10 +93,14 @@ struct SettingsView: View {
                         })
                 }
                 Section() {
+                    //MARK: - Default Preferences
+
                     Button(action: {
                         isShowingAlert.toggle()
                     }, label: {
                         Text("Default preferences")
+                            .foregroundColor(.blue)
+
                     })
                     .alert(isPresented: $isShowingAlert) {
                         Alert(
@@ -109,11 +113,15 @@ struct SettingsView: View {
                             })
                     }
                     
-                    Button(action: {
-                        
-                    }, label: {
-                        Text("About")
-                    })
+                    //MARK: - About
+
+                    NavigationLink(
+                        destination: AboutView(),
+                        label: {
+                            Text("About")
+                                .font(.system(size: 18, weight: .regular))
+                                .foregroundColor(.blue)
+                        })
                 }
             }
             .navigationBarTitle("Settings")

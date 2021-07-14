@@ -36,6 +36,7 @@
 		50E26C86268BE3F400F60394 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E26C85268BE3F300F60394 /* GridView.swift */; };
 		50F3237A265D208300CF7BEC /* Country+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F32379265D208300CF7BEC /* Country+Extensions.swift */; };
 		50FC53442695D8AD007D972F /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 50FC53432695D8AD007D972F /* SwiftfulLoadingIndicators */; };
+		50FC5346269F6F0F007D972F /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FC5345269F6F0F007D972F /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		50E26C7126891ECF00F60394 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		50E26C85268BE3F300F60394 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		50F32379265D208300CF7BEC /* Country+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+Extensions.swift"; sourceTree = "<group>"; };
+		50FC5345269F6F0F007D972F /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				505FCBB1267E26190041C908 /* EmptyListView.swift */,
 				50E26C7126891ECF00F60394 /* SettingsView.swift */,
 				5077A3F726932AD300F19282 /* NotificationSettingsView.swift */,
+				50FC5345269F6F0F007D972F /* AboutView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				5071FAE426591F7B00F19955 /* CurrencyData.swift in Sources */,
 				5040E7852669553500847988 /* CardView.swift in Sources */,
 				5040E791266E57F000847988 /* CurrencyCell.swift in Sources */,
+				50FC5346269F6F0F007D972F /* AboutView.swift in Sources */,
 				5040E787266A65FB00847988 /* AddCurrencyView.swift in Sources */,
 				505FCBB2267E26190041C908 /* EmptyListView.swift in Sources */,
 				50E26C7226891ECF00F60394 /* SettingsView.swift in Sources */,
@@ -432,7 +436,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = EvertonCarneiro.SimpleCurrency;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -454,7 +458,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = EvertonCarneiro.SimpleCurrency;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
