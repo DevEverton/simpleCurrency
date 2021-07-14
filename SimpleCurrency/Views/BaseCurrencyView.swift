@@ -16,6 +16,7 @@ struct BaseCurrencyView: View {
     @State var isSheetPresented = false
     @State var inputValue: Double? = 0.0
     
+    
     let date = Date()
     
     var body: some View {
@@ -79,6 +80,7 @@ struct BaseCurrencyView: View {
                         inputValue = 0.0
                         countryListVM.multiplier = 0.0
                     }
+ 
                 
                 Text(countryListVM.currencySymbol)
                     .font(.title)

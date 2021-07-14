@@ -37,7 +37,7 @@ struct ChooseBaseCurrencyView: View {
                             if countryListVM.baseCountry.currencyName == country.currencyName {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.system(size: 16, weight: .regular))
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color.blue)
                             }
                         }
                         

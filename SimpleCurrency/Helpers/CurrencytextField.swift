@@ -148,17 +148,8 @@ public struct CurrencyTextField: UIViewRepresentable {
         }
         
         // color
-        switch context.environment.colorScheme {
-        case .dark:
-            textField.textColor = .white
-        case .light:
-            textField.textColor = .black
-        @unknown default:
-            break
-        }
-        if let fgc = self.foregroundColor {
-            textField.textColor = fgc
-        }
+        updateTextColor(textField, context: context)
+
         
         // other
         textField.placeholder = placeholder
@@ -197,20 +188,33 @@ public struct CurrencyTextField: UIViewRepresentable {
             }
         }
         
-        // set first responder ONCE
-        // other times, let textfield handle it
+
         if self.isResponder?.wrappedValue == true && !textField.isFirstResponder && !context.coordinator.didBecomeFirstResponder {
                 textField.becomeFirstResponder()
                 context.coordinator.didBecomeFirstResponder = true
         }
         
-        // to dismiss, use dismissKeyboard()
-        // don't uiView.resignFirstResponder()
-        // otherwise many uibugs when using NavigationView
+        // color
+        updateTextColor(textField, context: context)
+        
+
+    }
+    
+    public func updateTextColor(_ textField: UITextField, context: UIViewRepresentableContext<CurrencyTextField>) {
+        switch context.environment.colorScheme {
+        case .dark:
+            textField.textColor = .white
+        case .light:
+            textField.textColor = .black
+        @unknown default:
+            break
+        }
+        if let fgc = self.foregroundColor {
+            textField.textColor = fgc
+        }
     }
     
     public static func dismantleUIView(_ uiView: UITextField, coordinator: CurrencyTextField.Coordinator) {
-        // nothing to cleanup
     }
     
     public class Coordinator: NSObject, UITextFieldDelegate {
@@ -286,14 +290,7 @@ public struct CurrencyTextField: UIViewRepresentable {
             let cursorLocation = textField.position(from: beginningPosition, offset: offset)
             
             if let cursorLoc = cursorLocation {
-                /**
-                  Shortly after new text is being pasted from the clipboard, UITextField receives a new value for its
-                  `selectedTextRange` property from the system. This new range is not consistent to the formatted text and
-                  calculated caret position most of the time, yet it's being assigned just after setCaretPosition call.
-                  
-                  To insure correct caret position is set, `selectedTextRange` is assigned asynchronously.
-                  (presumably after a vanishingly small delay)
-                  */
+
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
                     textField.selectedTextRange = textField.textRange(from: cursorLoc, to: cursorLoc)
                  }

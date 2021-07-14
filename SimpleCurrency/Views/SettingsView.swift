@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @StateObject var settings: UserSettingsStore
     @State var listLayout: UserSettings.ListLayout
+    @State var isShowingAlert = false
 
     
     private let decimalPlaces = [0, 1, 2, 3, 4]
@@ -90,7 +91,29 @@ struct SettingsView: View {
                                     .font(.system(size: 18, weight: .regular))
                             }
                         })
-
+                }
+                Section() {
+                    Button(action: {
+                        isShowingAlert.toggle()
+                    }, label: {
+                        Text("Default preferences")
+                    })
+                    .alert(isPresented: $isShowingAlert) {
+                        Alert(
+                            title: Text("Reset to Default"),
+                            message: Text("Are you sure you want to reset the preferences to default?"),
+                            primaryButton: .cancel(),
+                            secondaryButton: .destructive(Text("Yes")) {
+                                listLayout =  UserSettings.default.listLayout
+                                settings.userSettings = UserSettings.default
+                            })
+                    }
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("About")
+                    })
                 }
             }
             .navigationBarTitle("Settings")
