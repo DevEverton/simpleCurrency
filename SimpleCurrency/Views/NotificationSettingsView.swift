@@ -16,7 +16,7 @@ struct NotificationSettingsView: View {
         Form {
             HStack {
                 Toggle(isOn: $settings.userSettings.prefersNotifications, label: {
-                    Text("Enable Notifications").bold()
+                    Text("Enable").bold()
 
                 })
             }
@@ -36,6 +36,8 @@ struct NotificationSettingsView: View {
             settings.userSettings.notificationTime = NotificationTime(hour: hour, minutes: minutes)
             
         }
+        .navigationTitle("Notifications")
+        .navigationBarTitleDisplayMode(.large)
 
     }
     
