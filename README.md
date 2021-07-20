@@ -1,14 +1,16 @@
 # sCurrency
-Simple Currency: Minimalistic Designed Currency Converter
+Simple Currency: Free Currency Converter
 
-# Preview
+## Preview
 
-![readMEmock](https://user-images.githubusercontent.com/29552154/122768856-62c73e80-d27a-11eb-9333-22a9af4678aa.png)
+![githubPromo](https://user-images.githubusercontent.com/29552154/126325754-2782df1d-98bd-4848-88bd-a44dfa1d6a4f.png)
 
 ## Installation
 
-Just download the project and install in your device through Xcode. This app is completely free to use.
+Just download the project and install in your device through Xcode or you can download on the appStore on this [link]()
 
+## Privacy policy
+No personal information is collected.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
