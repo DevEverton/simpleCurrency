@@ -7,7 +7,7 @@ Simple Currency: Free Currency Converter
 
 ## Installation
 
-Just download the project and install in your device through Xcode or you can download on the appStore on this [link]()
+Just download the project and install in your device through Xcode.
 
 ## Privacy policy
 No personal information is collected.
