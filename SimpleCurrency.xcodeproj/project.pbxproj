@@ -30,6 +30,7 @@
 		507DBEB82672897400E8596A /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 507DBEB72672897400E8596A /* SDWebImageSwiftUI */; };
 		509BBB79267BD43C0024E8E2 /* CurrencytextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509BBB78267BD43C0024E8E2 /* CurrencytextField.swift */; };
 		50AB4E02265C82CB00CB8667 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB4E01265C82CB00CB8667 /* Constants.swift */; };
+		50C009CF26AB4AAD00785A25 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50C009CE26AB4AAD00785A25 /* Launch Screen.storyboard */; };
 		50E26C6E26876E5200F60394 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E26C6D26876E5200F60394 /* UserSettings.swift */; };
 		50E26C702687762900F60394 /* UserSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E26C6F2687762800F60394 /* UserSettingsStore.swift */; };
 		50E26C7226891ECF00F60394 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E26C7126891ECF00F60394 /* SettingsView.swift */; };
@@ -64,6 +65,7 @@
 		5077A3F726932AD300F19282 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		509BBB78267BD43C0024E8E2 /* CurrencytextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencytextField.swift; sourceTree = "<group>"; };
 		50AB4E01265C82CB00CB8667 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		50C009CE26AB4AAD00785A25 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		50E26C6D26876E5200F60394 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		50E26C6F2687762800F60394 /* UserSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsStore.swift; sourceTree = "<group>"; };
 		50E26C7126891ECF00F60394 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				5071FAE126591A6700F19955 /* Views */,
 				5071FAD326591A3B00F19955 /* Assets.xcassets */,
 				5071FAD826591A3B00F19955 /* Info.plist */,
+				50C009CE26AB4AAD00785A25 /* Launch Screen.storyboard */,
 				5071FAD526591A3B00F19955 /* Preview Content */,
 			);
 			path = SimpleCurrency;
@@ -258,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C009CF26AB4AAD00785A25 /* Launch Screen.storyboard in Resources */,
 				5071FAD726591A3B00F19955 /* Preview Assets.xcassets in Resources */,
 				5071FAD426591A3B00F19955 /* Assets.xcassets in Resources */,
 			);
